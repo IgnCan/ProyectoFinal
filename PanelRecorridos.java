@@ -30,5 +30,7 @@ public class PanelRecorridos extends JPanel {
         });
 
         add(BotonPruebaR);
+
+
     }
 }

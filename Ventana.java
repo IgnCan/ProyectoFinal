@@ -4,7 +4,7 @@ import java.awt.*;
 public class Ventana extends JFrame {
 
     PanelRecorridos rec = new PanelRecorridos(this);
-    PanelHorarios hor = new PanelHorarios();
+    PanelHorarios hor = new PanelHorarios(this);
 
     public Ventana()  {
         this.setSize(1000, 800);//Ancho y largo respectivamente
@@ -13,9 +13,9 @@ public class Ventana extends JFrame {
         setLocationRelativeTo(null); //Centra el programa al abrirlo
         setDefaultCloseOperation(EXIT_ON_CLOSE); //Cierra el programa al cerrar la ventana
         setLayout(new BorderLayout());//Permite organizar los JPanel
-
         add(rec,BorderLayout.WEST);
         add(hor,BorderLayout.CENTER);
+
 
     }
 
