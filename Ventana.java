@@ -7,6 +7,7 @@ public class Ventana extends JFrame {
 
 
     PanelAsientos asientos = new PanelAsientos();
+    BotonesInteractivos bob = new BotonesInteractivos(1);
 
     public Ventana()  {
         this.setSize(1000, 800);//Ancho y largo respectivamente
@@ -17,8 +18,8 @@ public class Ventana extends JFrame {
         setLayout(new BorderLayout());//Permite organizar los JPanel
         //add(rec,BorderLayout.WEST);
         //add(hor,BorderLayout.CENTER);
-        add(asientos);
-
+//        add(asientos);
+        add(bob);
 
     }
 
