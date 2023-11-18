@@ -65,25 +65,13 @@ public class BotonesInteractivos extends JPanel {
     private int PrecioTotal=0;
     private int precioBoleto;
     public BotonesInteractivos(int id) {
-//        setTitle("Botones Interactivos");
-        setSize(800, 800);
+//
+//        setSize(800, 800);
 
         precioBoleto=bus.getPresioPorID(id);
-        System.out.println(precioBoleto);
+        System.out.println("El precio por ticket es: " + precioBoleto);
 
         botonesAcomprobar = new ArrayList<>();
-
-//        setLayout(new GridBagLayout());
-//        GridBagConstraints gbc = new GridBagConstraints();
-//        gbc.gridx = 0; // Columna 0
-
-        // Crear varios BotonesAcomprobar
-//        for (int i = 1; i <= 5; i++) {
-//            BotonAcomprobar botonAcomprobar = new BotonAcomprobar("Asiento " + i);
-//            gbc.gridy = i;
-//            add(botonAcomprobar,gbc);
-//            botonesAcomprobar.add(botonAcomprobar);
-//        }
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -108,7 +96,6 @@ public class BotonesInteractivos extends JPanel {
         }
 
         Reservador = new JButton("Reservar");
-        // Agregar ActionListener para el segundo botón
         Reservador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -121,28 +108,15 @@ public class BotonesInteractivos extends JPanel {
                         System.out.println(PrecioTotal);
                     }
                 }
+                System.out.println("El precio total de la compra es: " + PrecioTotal);
                 PrecioTotal=0;
             }
         });
 
-        // Configurar el diseño del frame (puedes usar otros layouts según tus necesidades)
-        //setLayout(new java.awt.FlowLayout());
-
-
-
-        // Agregar los BotonesAcomprobar al frame
-//        for (BotonAcomprobar boton : botonesAcomprobar) {
-//            add(boton);
-//        }
-        // Agregar el botón 2 al frame
         gbc.gridy = 10;
         gbc.gridx = 10;
         add(Reservador);
-
-//        setVisible(true);
     }
-
-
 }
 
 
