@@ -3,8 +3,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class BotonAcomprobar extends JButton {
-    public BotonAcomprobar(String text) {
+class Asientos extends JButton {
+    public Asientos(String text) {
         super(text);
         setBackground(Color.WHITE);
         // Agregar ActionListener para cambiar el color al presionar
@@ -15,5 +15,9 @@ class BotonAcomprobar extends JButton {
                 setBackground(getBackground() == Color.WHITE ? Color.GREEN : Color.WHITE);
             }
         });
+    }
+
+    public void activacion(){
+
     }
 }

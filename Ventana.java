@@ -2,12 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Ventana extends JFrame {
+    int idbus =1;
 
 
 
 
-    PanelAsientos asientos = new PanelAsientos();
-    BotonesInteractivos bob = new BotonesInteractivos(1);
+
+    BotonesInteractivos bob = new BotonesInteractivos(idbus);
+    //PanelAsientos asientos = new PanelAsientos();
 
     public Ventana()  {
         this.setSize(1000, 800);//Ancho y largo respectivamente

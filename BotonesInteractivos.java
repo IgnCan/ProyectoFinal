@@ -58,26 +58,46 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 public class BotonesInteractivos extends JPanel {
-    private List<BotonAcomprobar> botonesAcomprobar;
-    private JButton Reservador;
+    private List<Object> asientos;
     private buses bus;
     private int PrecioTotal=0;
+
+    private String Recorrido= "Talca-Concepcion";
+
+    private String Horario= "08:00";
+
     private int precioBoleto;
     public BotonesInteractivos(int id) {
-//
-//        setSize(800, 800);
 
         precioBoleto=bus.getPresioPorID(id);
         System.out.println("El precio por ticket es: " + precioBoleto);
-
-        botonesAcomprobar = new ArrayList<>();
+        System.out.println("El recorrido y horario es: "+ Recorrido+" "+Horario);
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
+
+        //Esto crea una lista con los botones, la idea es dejarla a parte para ir modificando los botones//
+        //en masa de ser necesario//
+        asientos = new ArrayList<>();
         int NumeroAsiento=1;
+        for (int i=1; i<=41;i=i+1){
+            if (i==1){
+                asientos.add(Recorrido+" "+Horario);
+            } else {
+                asientos.add(new Asientos("Asiento " + NumeroAsiento));
+                NumeroAsiento = NumeroAsiento + 1;
+            }
+        }
+
+
+        // Todo esto crea el panel de botones con una bonita matriz
         int Columna=0;
         int Fila=0;
+        int y=1;
+
         for (int i = 1; i <= 50; i++) {
             gbc.gridy = Columna;
             gbc.gridx = Fila;
@@ -86,37 +106,50 @@ public class BotonesInteractivos extends JPanel {
                 add(relleno,gbc);
                 Fila=Fila+1;
             } else {
-                BotonAcomprobar botonAcomprobar = new BotonAcomprobar("Asiento " + NumeroAsiento);
-                add(botonAcomprobar,gbc);
+
+                add((Component) asientos.get(y),gbc);
                 Fila=Fila+1;
                 NumeroAsiento=NumeroAsiento+1;
-                botonesAcomprobar.add(botonAcomprobar);
-            }
-            if ((i)%5==0){Columna=Columna+1;Fila=0;}
-        }
+                y=y+1;
 
-        Reservador = new JButton("Reservar");
-        Reservador.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Verificar y desactivar BotonesAcomprobar según cierta condición
-                for (BotonAcomprobar boton : botonesAcomprobar) {
-                    if (boton.getBackground() == Color.GREEN) {
-                        boton.setEnabled(false);
-                        boton.setBackground(Color.RED);
-                        PrecioTotal=PrecioTotal+precioBoleto;
-                        System.out.println(PrecioTotal);
-                    }
-                }
-                System.out.println("El precio total de la compra es: " + PrecioTotal);
-                PrecioTotal=0;
             }
-        });
+            if (i%5==0){Columna=Columna+1;Fila=0;}
+        }
 
         gbc.gridy = 10;
         gbc.gridx = 10;
-        add(Reservador);
+        add(new Reservador());
+
     }
+    public class Reservador extends JButton{
+        public Reservador(){
+            setText("reservar");
+            addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    for (Object elemento : asientos) {
+                        if(elemento instanceof Asientos){
+                            Asientos bot = (Asientos) elemento;
+                            if (bot.getBackground() == Color.GREEN) {
+                                bot.setEnabled(false);
+                                bot.setBackground(Color.RED);
+                                PrecioTotal=PrecioTotal+precioBoleto;
+                                System.out.println(PrecioTotal);
+                            }
+                        }else if(elemento instanceof String){
+                                System.out.println(elemento);
+                        }
+                    }
+                    System.out.println("El precio total de la compra es: " + PrecioTotal);
+
+                    PrecioTotal=0;
+                }
+            });
+
+        }
+    }
+
 }
 
 
