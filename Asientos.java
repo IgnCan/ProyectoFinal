@@ -3,21 +3,33 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class Asientos extends JButton {
+public class Asientos extends JButton {
+    /**
+     * si es 1 desactiva el boton y lo deja en rojo
+     */
+    int apagado=0;
     public Asientos(String text) {
         super(text);
         setBackground(Color.WHITE);
-        // Agregar ActionListener para cambiar el color al presionar
+        if (apagado==1){
+            setBackground(Color.RED);
+            setEnabled(false);
+        }
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //setBackground(getBackground() == Color.RED ? Color.GREEN : Color.RED);
                 setBackground(getBackground() == Color.WHITE ? Color.GREEN : Color.WHITE);
             }
         });
     }
 
-    public void activacion(){
-
+    /**
+     * Este metodo se encarga de desactivar el boton, y modificar el valor de apagado a 1, esto permite mantener
+     * el boton desactivado en compras multiples y guardar su estado al cambiar de bus, recorrido, etc.
+     */
+    public void Desactivacion(){
+        apagado=1;
+        setEnabled(false);
+        setBackground(Color.RED);
     }
 }
