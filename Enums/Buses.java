@@ -1,3 +1,5 @@
+package Enums;
+
 public enum Buses{
     NORMAL(1,300),
     SALONCAMA(2,2000),

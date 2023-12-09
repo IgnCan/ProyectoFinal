@@ -22,8 +22,6 @@ public class Ventana extends JFrame {
         //add(hor,BorderLayout.CENTER);
 //        add(asientos);
 
-
-
         add(bob);
 
     }

@@ -1,3 +1,6 @@
+import Botones.Asientos;
+import Enums.Buses;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +13,7 @@ public class PanelReserva extends JPanel {
     private int PrecioTotal=0;
     private String IdViajeCompleto;
     // agregado temporalmente en lo que logro el envio de listas.
-    private Ventana vent;
+    public Ventana vent;
 
     private int precioBoleto;
     public PanelReserva(int id, String Recorrido, String Horario, Ventana vent) {
