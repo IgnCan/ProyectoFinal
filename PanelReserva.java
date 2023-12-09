@@ -4,16 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class BotonesInteractivos extends JPanel {
+public class PanelReserva extends JPanel {
     private ArrayList<Object> asientos = new ArrayList<>();
-    private buses bus;
+    private Buses bus;
     private int PrecioTotal=0;
     private String IdViajeCompleto;
     // agregado temporalmente en lo que logro el envio de listas.
     private Ventana vent;
 
     private int precioBoleto;
-    public BotonesInteractivos(int id, String Recorrido, String Horario,Ventana vent) {
+    public PanelReserva(int id, String Recorrido, String Horario, Ventana vent) {
 
         precioBoleto=bus.getPresioPorID(id);
         IdViajeCompleto =Recorrido+", "+Horario;

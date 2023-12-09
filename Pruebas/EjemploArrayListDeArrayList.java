@@ -1,3 +1,5 @@
+package Pruebas;
+
 import java.util.ArrayList;
 // para sacar elemento especifico
 public class EjemploArrayListDeArrayList {

@@ -1,57 +1,39 @@
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-//public class main {
-//
-//
-//
-//    public static void main(String[] args) {
-//
-//        Ventana v1 = new Ventana();
-//        v1.setVisible(true);
-//        // Crear la instancia del frame en el hilo de despacho de eventos
-//        //javax.swing.SwingUtilities.invokeLater(() -> new Ventana());
-//
-////        MainFrame v2 = new MainFrame();
-////        javax.swing.SwingUtilities.invokeLater(() -> new BotonesInteractivos(1));
-//
-//    }
-//}
+package Paneles;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+/**
+ * Es el Jframe principal donde se ejecutara todo, usa cardlayout para moverse entre paneles
+ */
+public class Visual extends JFrame {
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+    CardLayout cardLayout = new CardLayout();
 
-public class main {
-    public static void main(String[] args) {
-        // Crear el frame principal
+    public Visual()  {
+        this.setSize(1000, 800);//Ancho y largo respectivamente
+        setBackground(Color.CYAN);//Color de fondo
+        setTitle("Coso de buses"); //Titulo
+        setLocationRelativeTo(null); //Centra el programa al abrirlo
+        setDefaultCloseOperation(EXIT_ON_CLOSE); //Cierra el programa al cerrar la ventana
+        setLayout(new BorderLayout());//Permite organizar los JPanel
+
+
         JFrame frame = new JFrame("CardLayout Example");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 200);
 
         // Crear el contenedor con CardLayout
-        CardLayout cardLayout = new CardLayout();
+
         JPanel cardPanel = new JPanel(cardLayout);
 
         // Crear dos paneles con contenido diferente
         JPanel panel1 = new JPanel();
-
         for (int i=1;i<=9;i=i+1){
-            panel1.add(new JButton("recorrido " +i));
+            panel1.add(new JButton("recorrido" +i));
         }
 
         JPanel panel2 = new JPanel();
@@ -93,5 +75,3 @@ public class main {
         frame.setVisible(true);
     }
 }
-
-

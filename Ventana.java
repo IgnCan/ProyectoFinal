@@ -8,7 +8,7 @@ public class Ventana extends JFrame {
     String Horario="08:00";
 
     ArrayList<ArrayList<Object>> listaPrincipal = new ArrayList<>();
-    BotonesInteractivos bob = new BotonesInteractivos(idbus, Recorrido, Horario, this);
+    PanelReserva bob = new PanelReserva(idbus, Recorrido, Horario, this);
     //PanelAsientos asientos = new PanelAsientos();
 
     public Ventana()  {

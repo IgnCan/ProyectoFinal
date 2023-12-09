@@ -1,4 +1,4 @@
-public enum buses{
+public enum Buses{
     NORMAL(1,300),
     SALONCAMA(2,2000),
     SEMICAMA(3,600);
@@ -8,7 +8,7 @@ public enum buses{
      * @param i es la id del bus.
      * @param precio es el precio del ticket
      */
-    buses(int i, int precio) {
+    Buses(int i, int precio) {
         this.id=i;
         this.presio=precio;
     }
@@ -23,7 +23,7 @@ public enum buses{
     }
 
     public static int getPresioPorID(int id) {
-        for (buses bus : values()) {
+        for (Buses bus : values()) {
             if (bus.getId() == id) {
                 return bus.getPresio();
             }
