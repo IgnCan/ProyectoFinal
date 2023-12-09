@@ -1,3 +1,3 @@
 # ProyectoFinal
-Paula San Martín\\
-Ignacio Candia\\
+Paula San Martín//
+Ignacio Candia//
