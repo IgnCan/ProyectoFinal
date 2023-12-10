@@ -10,32 +10,21 @@ public enum Recorrido {
     RECORRIDO3("Concepcion-Santiasco", 2000),
     RECORRIDO4("Concepcion-Linares", 2000),
     RECORRIDO5("Concepcion-AntiguaRoma", 99999);
-    private final int presio;
-    private final String recorrido;
-    /**
-     * @param recorrido es la id del recorrido.
-     * @param precio es el precio por recorrido
-     */
-    Recorrido(String recorrido, int precio) {
-        this.recorrido =recorrido;
-        this.presio=precio;
+
+    private String recorrido;
+
+    private int presio;
+
+    Recorrido(String descripcion, int presio) {
+        this.recorrido = descripcion;
+        this.presio=presio;
     }
-    /**
-     * getter de precio.
-     */
-    public int getPresio() {
-        return presio;
-    }
+
     public String getRecorrido() {
         return recorrido;
     }
 
-    public static int getPresioPorID(String id) {
-        for (Recorrido ruta : values()) {
-            if (ruta.getRecorrido() == id) {
-                return ruta.getPresio();
-            }
-        }
-        return 0;
+    public int getPresio(){
+        return presio;
     }
 }

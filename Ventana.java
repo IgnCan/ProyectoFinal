@@ -3,7 +3,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Ventana extends JFrame {
-    int idbus =1;
+    String idbus ="Semi-cama";
     String Recorrido="Talca-Concepcion";
     String Horario="08:00";
 

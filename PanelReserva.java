@@ -1,5 +1,6 @@
 import Botones.Asientos;
-import Enums.Buses;
+import Enums.TipoBus;
+import Enums.TipoAsiento;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,16 +10,16 @@ import java.util.ArrayList;
 
 public class PanelReserva extends JPanel {
     private ArrayList<Object> asientos = new ArrayList<>();
-    private Buses bus;
+    private TipoAsiento asiento;
     private int PrecioTotal=0;
     private String IdViajeCompleto;
     // agregado temporalmente en lo que logro el envio de listas.
     public Ventana vent;
 
     private int precioBoleto;
-    public PanelReserva(int id, String Recorrido, String Horario, Ventana vent) {
+    public PanelReserva(String id, String Recorrido, String Horario, Ventana vent) {
 
-        precioBoleto=bus.getPresioPorID(id);
+        precioBoleto=asiento.getPresioPorNombre(id);
         IdViajeCompleto =Recorrido+", "+Horario;
         this.vent=vent;
         System.out.println("El precio por ticket es: " + precioBoleto);

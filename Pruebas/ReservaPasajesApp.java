@@ -1,94 +1,11 @@
 package Pruebas;
-
+import Enums.Horario;
+import Enums.Recorrido;
+import Enums.TipoAsiento;
+import Enums.TipoBus;
 import java.util.*;
 
 public class ReservaPasajesApp {
-    // Enum para los recorridos
-    public enum Recorrido {
-        RECORRIDO1("Concepcion-Talca", 300),
-        RECORRIDO2("Concepcion-Lota", 2000),
-        RECORRIDO3("Concepcion-Santiasco", 2000),
-        RECORRIDO4("Concepcion-Linares", 2000),
-        RECORRIDO5("Concepcion-AntiguaRoma", 99999);
-
-        private String descripcion;
-
-        private int presio;
-
-        Recorrido(String descripcion, int presio) {
-            this.descripcion = descripcion;
-            this.presio=presio;
-        }
-
-        public String getDescripcion() {
-            return descripcion;
-        }
-
-        public int getPresio(){
-            return presio;
-        }
-    }
-
-    // Enum para los horarios
-    public enum Horario {
-        HORARIO_1("8:00 AM"),
-        HORARIO_2("10:00 AM");
-        // ... otros horarios ...
-
-        private String hora;
-
-        Horario(String hora) {
-            this.hora = hora;
-        }
-
-        public String getHora() {
-            return hora;
-        }
-    }
-
-    // Enum para los tipos de asientos
-    public enum TipoAsiento {
-        SEMI_CAMA("Semi-cama",500),
-        NORMAL("Normal",200),
-        EJECUTIVO("Pudiente",1000);
-
-        private String nombre;
-        private int presio;
-
-        TipoAsiento(String nombre, int presio){
-            this.nombre=nombre;
-            this.presio=presio;
-        }
-        public String getNombre(){
-            return nombre;
-        }
-        public int getPresio(){
-            return presio;
-        }
-    }
-
-    // Enum para los tipos de buses
-    public enum TipoBus {
-        UNO_PISO("Un piso", 100),
-        DOS_PISOS("Dos pisos",0);
-
-        private String nombre;
-        private int presio;
-
-        TipoBus(String nombre, int presio){
-            this.nombre=nombre;
-            this.presio=presio;
-        }
-
-        public String getNombre() {
-            return nombre;
-        }
-
-        public int getPresio() {
-            return presio;
-        }
-    }
-
     // Clase para representar una asignación de horario, tipo de asiento y tipo de bus a un recorrido
     public static class AsignacionHorarios {
         private Map<Recorrido, List<AsignacionFinal>> asignaciones = new HashMap<>();
@@ -144,7 +61,7 @@ public class ReservaPasajesApp {
         List<AsignacionFinal> asignacionesRecorrido1 = asignacionHorarios.obtenerAsignacionFinal(Recorrido.RECORRIDO5);
 
         // Imprimir las asignaciones para el Recorrido_1
-        System.out.println("Asignaciones para " + Recorrido.RECORRIDO5.getDescripcion() + ":");
+        System.out.println("Asignaciones para " + Recorrido.RECORRIDO5.getRecorrido() + ":");
         for (AsignacionFinal asignacion : asignacionesRecorrido1) {
             System.out.println("- " + asignacion);
         }
