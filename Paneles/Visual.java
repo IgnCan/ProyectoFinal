@@ -26,8 +26,11 @@ public class Visual extends JFrame {
     TipoAsiento asi;
     TipoBus bus;
 
-    private String currentCard;
+    private int currentPanelIndex;  // Variable para almacenar el índice del panel actual
 
+    /**
+     *
+     */
     public Visual()  {
         this.setSize(1000, 800);//Ancho y largo respectivamente
         setBackground(Color.CYAN);//Color de fondo
@@ -46,35 +49,42 @@ public class Visual extends JFrame {
 
         // Agregar los paneles al contenedor con CardLayout
         // Le agrego el panel de Recorrido
-        cardPanel.add(panelRecorrido,"PanelRec");
-        cardPanel.add(panelHorarios, "PanelHor");
-        cardPanel.add(panel2, "tarjeta2");
+        cardPanel.add(panelRecorrido,"Panel1");
+        cardPanel.add(panelHorarios, "Panel2");
+        cardPanel.add(panel2, "Panel3");
 
         // Crear botones para cambiar entre las tarjetas
-        JButton mostrarTarjeta1 = new JButton("prev");
-        JButton mostrarTarjeta2 = new JButton("next");
+        JButton avanzarPanel = new JButton("prev");
+        JButton retrocederPanel = new JButton("next");
 
-        // Agregar ActionListener para cambiar entre las tarjetas
-        mostrarTarjeta1.addActionListener(new ActionListener() {
+
+        // Agregar ActionListener para cambiar entre las paneles
+
+
+        avanzarPanel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 cardLayout.previous(cardPanel);
+                showPreviousPanel();
             }
         });
 
-        mostrarTarjeta2.addActionListener(new ActionListener() {
+        retrocederPanel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 rec=panelRecorrido.getRec();
                 System.out.println(rec.getPresio() + rec.getRecorrido());
                 cardLayout.next(cardPanel);
+                showNextPanel();
             }
         });
 
         // Crear un panel para los botones de cambio de tarjeta
         JPanel buttonPanel = new JPanel();
-        buttonPanel.add(mostrarTarjeta1);
-        buttonPanel.add(mostrarTarjeta2);
+        buttonPanel.add(avanzarPanel);
+        buttonPanel.add(retrocederPanel);
 
 
 
@@ -82,8 +92,7 @@ public class Visual extends JFrame {
         this.add(cardPanel, BorderLayout.CENTER);
         this.add(buttonPanel, BorderLayout.SOUTH);
 
-        currentCard = "PanelRec";
-        cardLayout.show(cardPanel, currentCard);
+
 
         // Hacer visible el frame
         this.setVisible(true);
@@ -105,41 +114,24 @@ public class Visual extends JFrame {
         this.bus = bus;
     }
 
-//    private void showPreviousPanel() {
-//        // Realizar acción específica para el botón "Prev" en función del panel actual
-//        if ("Panel1".equals(currentCard)) {
-//            System.out.println("Acción para Prev en Panel1");
-//            // Agrega aquí la lógica específica para Panel1 y el botón "Prev"
-//        } else if ("Panel2".equals(currentCard)) {
-//            System.out.println("Acción para Prev en Panel2");
-//            // Agrega aquí la lógica específica para Panel2 y el botón "Prev"
-//        } else if ("Panel3".equals(currentCard)) {
-//            System.out.println("Acción para Prev en Panel3");
-//            // Agrega aquí la lógica específica para Panel3 y el botón "Prev"
-//        }
-//
-//        // Cambiar al panel anterior
-//        cardLayout.previous(cardPanel);
-//        currentCard = cardLayout.getCurrent(cardPanel);
-//    }
-//
-//    private void showNextPanel() {
-//        // Realizar acción específica para el botón "Next" en función del panel actual
-//        if ("Panel1".equals(currentCard)) {
-//            System.out.println("Acción para Next en Panel1");
-//            // Agrega aquí la lógica específica para Panel1 y el botón "Next"
-//        } else if ("Panel2".equals(currentCard)) {
-//            System.out.println("Acción para Next en Panel2");
-//            // Agrega aquí la lógica específica para Panel2 y el botón "Next"
-//        } else if ("Panel3".equals(currentCard)) {
-//            System.out.println("Acción para Next en Panel3");
-//            // Agrega aquí la lógica específica para Panel3 y el botón "Next"
-//        }
-//
-//        // Cambiar al siguiente panel
-//        cardLayout.next(cardPanel);
-//        currentCard = cardLayout.getCurrent(cardPanel);
-//    }
+    private void showPreviousPanel() {
+        // Realizar la lógica específica para el botón Prev según el panel actual
+        if (currentPanelIndex > 0) {
+            currentPanelIndex--;
+            cardLayout.show(cardPanel, "Panel" + (currentPanelIndex + 1));
+            System.out.println("retroseo");
+        }
+    }
+
+    private void showNextPanel() {
+        // Realizar la lógica específica para el botón Next según el panel actual
+        if (currentPanelIndex < cardPanel.getComponentCount() - 1) {
+            currentPanelIndex++;
+            cardLayout.show(cardPanel, "Panel" + (currentPanelIndex + 1));
+            System.out.println("anavso");
+        }
+    }
+
 
 
 }
