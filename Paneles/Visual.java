@@ -18,7 +18,7 @@ public class Visual extends JFrame {
 
     CardLayout cardLayout = new CardLayout();
     PanelRecorrido panelRecorrido =new PanelRecorrido();
-    PanelHorarios panelHorarios=new PanelHorarios();
+    PanelHorarios panelHorarios = new PanelHorarios();
     JPanel cardPanel = new JPanel(cardLayout);
 
     Recorrido rec;
@@ -54,8 +54,8 @@ public class Visual extends JFrame {
         cardPanel.add(panel2, "Panel3");
 
         // Crear botones para cambiar entre las tarjetas
-        JButton retroPanel = new JButton("prev");
-        JButton avanPanel = new JButton("next");
+        JButton retroPanel = new JButton("Retro");
+        AvanzarBot avanPanel = new AvanzarBot("Siguiente");
 
 
         // Agregar ActionListener para cambiar entre las paneles
@@ -69,27 +69,6 @@ public class Visual extends JFrame {
                 showPreviousPanel();
             }
         });
-
-//        avanPanel.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                rec=panelRecorrido.getRec();
-//                avanPanel.setEnabled(false);
-//                if(rec!=null){
-//                    avanPanel.setEnabled(true);
-//                }
-//
-//                System.out.println(rec.getPresio() + rec.getRecorrido());
-//                //cardLayout.next(cardPanel);
-//                if (currentPanelIndex < cardPanel.getComponentCount() - 1) {
-//                    currentPanelIndex++;
-//                    cardLayout.show(cardPanel, "Panel" + (currentPanelIndex + 1));
-//
-//                    // Activar o desactivar el botón "Next" según el estado de tuObjeto
-//
-//                }
-//            }
-//        });
 
         // Crear un panel para los botones de cambio de tarjeta
         JPanel buttonPanel = new JPanel();
@@ -121,25 +100,34 @@ public class Visual extends JFrame {
     }
 
     public class AvanzarBot extends JButton{
-        public AvanzarBot(){
+        public AvanzarBot(String text){
+            super(text);
+            //this.setEnabled(false);
             this.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+
                     rec=panelRecorrido.getRec();
-                    setEnabled(false);
-                    if(rec!=null){
-                        setEnabled(true);
+
+                    if(rec!=null && (currentPanelIndex==0 )){
+
+                        System.out.println(rec.getPresio() + rec.getRecorrido());
+//                        panelHorarios=new PanelHorarios();
+                        panelHorarios.setRec(rec);
+                        panelHorarios.mostrarPanelHorario();
+                        cardLayout.next(cardPanel);
+                        currentPanelIndex=currentPanelIndex+1;
+                    } else if (rec!=null && currentPanelIndex == 1) {
+//                        panelHorarios.setRec(rec);
+
                     }
-
-                    System.out.println(rec.getPresio() + rec.getRecorrido());
-                    //cardLayout.next(cardPanel);
-                    if (currentPanelIndex < cardPanel.getComponentCount() - 1) {
-                        currentPanelIndex++;
-                        cardLayout.show(cardPanel, "Panel" + (currentPanelIndex + 1));
-
-                        // Activar o desactivar el botón "Next" según el estado de tuObjeto
-
-                    }
+//                    if (currentPanelIndex < cardPanel.getComponentCount() - 1) {
+//                        currentPanelIndex++;
+//                        cardLayout.show(cardPanel, "Panel" + (currentPanelIndex + 1));
+//
+//                        // Activar o desactivar el botón "Next" según el estado de tuObjeto
+//
+//                    }
                 }
             });
         }
