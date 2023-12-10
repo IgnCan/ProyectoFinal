@@ -26,7 +26,7 @@ public class Visual extends JFrame {
     TipoAsiento asi;
     TipoBus bus;
 
-
+    private String currentCard;
 
     public Visual()  {
         this.setSize(1000, 800);//Ancho y largo respectivamente
@@ -46,8 +46,8 @@ public class Visual extends JFrame {
 
         // Agregar los paneles al contenedor con CardLayout
         // Le agrego el panel de Recorrido
-        cardPanel.add(panelRecorrido,"PanelRecorrido.....");
-        cardPanel.add(panelHorarios, "PanelHorarios.....");
+        cardPanel.add(panelRecorrido,"PanelRec");
+        cardPanel.add(panelHorarios, "PanelHor");
         cardPanel.add(panel2, "tarjeta2");
 
         // Crear botones para cambiar entre las tarjetas
@@ -76,9 +76,14 @@ public class Visual extends JFrame {
         buttonPanel.add(mostrarTarjeta1);
         buttonPanel.add(mostrarTarjeta2);
 
+
+
         // Agregar el contenedor con CardLayout y el panel de botones al frame
         this.add(cardPanel, BorderLayout.CENTER);
         this.add(buttonPanel, BorderLayout.SOUTH);
+
+        currentCard = "PanelRec";
+        cardLayout.show(cardPanel, currentCard);
 
         // Hacer visible el frame
         this.setVisible(true);
@@ -100,41 +105,41 @@ public class Visual extends JFrame {
         this.bus = bus;
     }
 
-    private void showPreviousPanel() {
-        // Realizar acción específica para el botón "Prev" en función del panel actual
-        if ("Panel1".equals(currentCard)) {
-            System.out.println("Acción para Prev en Panel1");
-            // Agrega aquí la lógica específica para Panel1 y el botón "Prev"
-        } else if ("Panel2".equals(currentCard)) {
-            System.out.println("Acción para Prev en Panel2");
-            // Agrega aquí la lógica específica para Panel2 y el botón "Prev"
-        } else if ("Panel3".equals(currentCard)) {
-            System.out.println("Acción para Prev en Panel3");
-            // Agrega aquí la lógica específica para Panel3 y el botón "Prev"
-        }
-
-        // Cambiar al panel anterior
-        cardLayout.previous(cardPanel);
-        currentCard = cardLayout.getCurrent(cardPanel);
-    }
-
-    private void showNextPanel() {
-        // Realizar acción específica para el botón "Next" en función del panel actual
-        if ("Panel1".equals(currentCard)) {
-            System.out.println("Acción para Next en Panel1");
-            // Agrega aquí la lógica específica para Panel1 y el botón "Next"
-        } else if ("Panel2".equals(currentCard)) {
-            System.out.println("Acción para Next en Panel2");
-            // Agrega aquí la lógica específica para Panel2 y el botón "Next"
-        } else if ("Panel3".equals(currentCard)) {
-            System.out.println("Acción para Next en Panel3");
-            // Agrega aquí la lógica específica para Panel3 y el botón "Next"
-        }
-
-        // Cambiar al siguiente panel
-        cardLayout.next(cardPanel);
-        currentCard = cardLayout.getCurrent(cardPanel);
-    }
+//    private void showPreviousPanel() {
+//        // Realizar acción específica para el botón "Prev" en función del panel actual
+//        if ("Panel1".equals(currentCard)) {
+//            System.out.println("Acción para Prev en Panel1");
+//            // Agrega aquí la lógica específica para Panel1 y el botón "Prev"
+//        } else if ("Panel2".equals(currentCard)) {
+//            System.out.println("Acción para Prev en Panel2");
+//            // Agrega aquí la lógica específica para Panel2 y el botón "Prev"
+//        } else if ("Panel3".equals(currentCard)) {
+//            System.out.println("Acción para Prev en Panel3");
+//            // Agrega aquí la lógica específica para Panel3 y el botón "Prev"
+//        }
+//
+//        // Cambiar al panel anterior
+//        cardLayout.previous(cardPanel);
+//        currentCard = cardLayout.getCurrent(cardPanel);
+//    }
+//
+//    private void showNextPanel() {
+//        // Realizar acción específica para el botón "Next" en función del panel actual
+//        if ("Panel1".equals(currentCard)) {
+//            System.out.println("Acción para Next en Panel1");
+//            // Agrega aquí la lógica específica para Panel1 y el botón "Next"
+//        } else if ("Panel2".equals(currentCard)) {
+//            System.out.println("Acción para Next en Panel2");
+//            // Agrega aquí la lógica específica para Panel2 y el botón "Next"
+//        } else if ("Panel3".equals(currentCard)) {
+//            System.out.println("Acción para Next en Panel3");
+//            // Agrega aquí la lógica específica para Panel3 y el botón "Next"
+//        }
+//
+//        // Cambiar al siguiente panel
+//        cardLayout.next(cardPanel);
+//        currentCard = cardLayout.getCurrent(cardPanel);
+//    }
 
 
 }

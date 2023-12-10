@@ -10,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+/**
+ * Panel donde se muestran los horarios disponibles 
+ */
 public class PanelHorarios extends JPanel {
     public Asignaciones oa = new Asignaciones();
     List<AsignacionFinal> asignacionesRecorrido1 = oa.obtenerAAsignacionFinal(Recorrido.RECORRIDO5);

@@ -5,7 +5,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase PanelAsientos crea un jPanel con los jbuttons para seleccionar el asiento,
+ * dependiendo del tipo de bus, horario y recorrido
+ */
 public class PanelAsientos extends JPanel {
+
+
+
     public PanelAsientos(){
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -27,7 +34,5 @@ public class PanelAsientos extends JPanel {
             }
             if ((i)%5==0){Columna=Columna+1;Fila=0;}
         }
-
     }
-
 }

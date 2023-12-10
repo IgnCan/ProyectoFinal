@@ -28,9 +28,9 @@ public class AsignacionHorarios {
     }
 
     /**
-     * Metodo público que retorna una lista
+     * Metodo público que retorna una lista con las sublistas con los datos del recorrido solicitdo
      * @param recorrido
-     * @return
+     * @return lista con sublistas de las caracteristicas del recorrido
      */
     public List<AsignacionFinal> obtenerAsignacionFinal(Recorrido recorrido) {
         return asignaciones.getOrDefault(recorrido, Collections.emptyList());
