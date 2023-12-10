@@ -5,7 +5,8 @@ package Enums;
  */
 public enum Horario {
     HORARIO_1("8:00 AM"),
-    HORARIO_2("10:00 AM");
+    HORARIO_2("10:00 AM"),
+    HORARIO_3("13:30 PM");
 
     private String hora;
     /**

@@ -6,7 +6,7 @@ import Enums.TipoAsiento;
 import Enums.TipoBus;
 
 /**
- * clase
+ * clase AsignacionFinal
  */
 public class AsignacionFinal {
     private Horario horario;
