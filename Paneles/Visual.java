@@ -1,5 +1,6 @@
 package Paneles;
 
+import AsignacionDeHorarios.AsignacionFinal;
 import Enums.Horario;
 import Enums.Recorrido;
 import Enums.TipoAsiento;
@@ -9,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 /**
@@ -16,21 +18,30 @@ import java.awt.event.ActionListener;
  */
 public class Visual extends JFrame {
 
+    ArrayList<ArrayList<Object>> listaPrincipal = new ArrayList<>();
+
+
+    // Estos son los paneles
     CardLayout cardLayout = new CardLayout();
     PanelRecorrido panelRecorrido =new PanelRecorrido();
     PanelHorarios panelHorarios = new PanelHorarios();
+    PanelReserva panelReserva =new PanelReserva(this);
+    //El cardLayout
     JPanel cardPanel = new JPanel(cardLayout);
+    //Las variables que se iran modificando en el proceso
+    private Recorrido rec;
+    private Horario hor;
+    private TipoAsiento asi;
+    private TipoBus bus;
+    private AsignacionFinal asignacionFinal;
 
-    Recorrido rec;
-    Horario hor;
-    TipoAsiento asi;
-    TipoBus bus;
-
-    private int currentPanelIndex;  // Variable para almacenar el índice del panel actual
+    //Variable que identifica el Jpanen en el que estamos
+    private int currentPanelIndex;
 
     /**
      *
      */
+
     public Visual()  {
         this.setSize(1000, 800);//Ancho y largo respectivamente
         setBackground(Color.CYAN);//Color de fondo
@@ -42,33 +53,15 @@ public class Visual extends JFrame {
         this.add(panelRecorrido);
         this.add(panelHorarios);
 
-        // Crear dos paneles con contenido diferente
-
-        JPanel panel2 = new JPanel();
-        panel2.add(new JLabel("Contenido de la tarjeta 2"));
-
         // Agregar los paneles al contenedor con CardLayout
         // Le agrego el panel de Recorrido
         cardPanel.add(panelRecorrido,"Panel1");
         cardPanel.add(panelHorarios, "Panel2");
-        cardPanel.add(panel2, "Panel3");
+        cardPanel.add(panelReserva, "Panel3");
 
         // Crear botones para cambiar entre las tarjetas
-        JButton retroPanel = new JButton("Retro");
+        RetroBot retroPanel = new RetroBot("Retroceder");
         AvanzarBot avanPanel = new AvanzarBot("Siguiente");
-
-
-        // Agregar ActionListener para cambiar entre las paneles
-
-
-        retroPanel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                cardLayout.previous(cardPanel);
-                showPreviousPanel();
-            }
-        });
 
         // Crear un panel para los botones de cambio de tarjeta
         JPanel buttonPanel = new JPanel();
@@ -108,61 +101,70 @@ public class Visual extends JFrame {
                 public void actionPerformed(ActionEvent e) {
 
                     rec=panelRecorrido.getRec();
+                    bus=panelHorarios.getBus();
+                    asi=panelHorarios.getAsi();
+                    hor=panelHorarios.getHor();
+                    asignacionFinal = panelHorarios.getAsignacionFinal();
 
                     if(rec!=null && (currentPanelIndex==0 )){
 
                         System.out.println(rec.getPresio() + rec.getRecorrido());
-//                        panelHorarios=new PanelHorarios();
                         panelHorarios.setRec(rec);
                         panelHorarios.mostrarPanelHorario();
                         cardLayout.next(cardPanel);
                         currentPanelIndex=currentPanelIndex+1;
-                    } else if (rec!=null && currentPanelIndex == 1) {
-//                        panelHorarios.setRec(rec);
 
+                    } else if (rec!=null && bus!=null && asi!=null && hor!=null && currentPanelIndex == 1) {
+//                        panelHorarios.setRec(rec);
+                        cardLayout.next(cardPanel);
+                        currentPanelIndex=currentPanelIndex+1;
+
+                    } else if (currentPanelIndex == 2 ) {
+                        cardLayout.show(cardPanel,"Panel1");
+                        rec=null;
+                        bus=null;
+                        asi=null;
+                        hor=null;
+                        asignacionFinal = null;
+                        currentPanelIndex=0;
                     }
-//                    if (currentPanelIndex < cardPanel.getComponentCount() - 1) {
-//                        currentPanelIndex++;
-//                        cardLayout.show(cardPanel, "Panel" + (currentPanelIndex + 1));
-//
-//                        // Activar o desactivar el botón "Next" según el estado de tuObjeto
-//
-//                    }
                 }
             });
         }
     }
 
-    private void showPreviousPanel() {
-        // Realizar la lógica específica para el botón Prev según el panel actual
-        if (currentPanelIndex > 0) {
-            currentPanelIndex--;
-            cardLayout.show(cardPanel, "Panel" + (currentPanelIndex + 1));
-            System.out.println("retroseo");
+    public class RetroBot extends JButton{
+        public RetroBot(String text){
+            super(text);
+            this.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(currentPanelIndex==1){
+                        rec=null;
+                        currentPanelIndex=0;
+                    } else if (currentPanelIndex==2) {
+                        bus=null;
+                        asi=null;
+                        hor=null;
+                        asignacionFinal = null;
+                        currentPanelIndex=1;
+                    }
+                }
+            });
         }
     }
 
-    private void showNextPanel(JButton but) {
-        // Realizar la lógica específica para el botón Next según el panel actual
-
-        if (currentPanelIndex < cardPanel.getComponentCount() - 1){
-//            but = (JButton) ((Container) getContentPane().getComponent(1)).getComponent(1);
-            but.setEnabled(rec != null);
-            currentPanelIndex++;
-            cardLayout.show(cardPanel, "Panel" + (currentPanelIndex + 1));
-            System.out.println("anavso");
-
-        }
-
-
-//        if (currentPanelIndex < cardPanel.getComponentCount() - 1) {
-//            currentPanelIndex++;
-//            cardLayout.show(cardPanel, "Panel" + (currentPanelIndex + 1));
-//            System.out.println("anavso");
-//        }
-
+    /**
+     * Se encarga de recibir la lista con los "pasajes" (botones desactivados)
+     * ya comprados, y asi guardarlos al realizar compras multiples
+     * @param lista Lista con botones "Asientos" y un string identificatorio al principio del array
+     */
+    public void recibirLista(ArrayList lista){
+        listaPrincipal.add(lista);
     }
 
-
+    public ArrayList<ArrayList<Object>> getListaPrincipal() {
+        return listaPrincipal;
+    }
 
 }

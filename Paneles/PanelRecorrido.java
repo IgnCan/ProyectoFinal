@@ -32,6 +32,11 @@ public class PanelRecorrido extends JPanel {
             this.add(button);
         }
     }
+
+    /**
+     * getter de rec
+     * @return Recorrido rec
+     */
     public Recorrido getRec() {
         return rec;
     }

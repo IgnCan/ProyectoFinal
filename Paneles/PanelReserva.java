@@ -1,6 +1,11 @@
+package Paneles;
+
+import AsignacionDeHorarios.AsignacionFinal;
 import Botones.Asientos;
-import Enums.TipoBus;
+import Enums.Horario;
+import Enums.Recorrido;
 import Enums.TipoAsiento;
+import Enums.TipoBus;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,20 +15,27 @@ import java.util.ArrayList;
 
 public class PanelReserva extends JPanel {
     private ArrayList<Object> asientos = new ArrayList<>();
-    private TipoAsiento asiento;
-    private int PrecioTotal=0;
+
+
+    private Recorrido rec = Recorrido.RECORRIDO1;
+    private Horario hor = Horario.HORARIO_3;
+    private TipoAsiento asi = TipoAsiento.EJECUTIVO;
+    private TipoBus bus = TipoBus.DOS_PISOS;
+    private AsignacionFinal asignacionFinal;
+    private int PrecioTotal;
     private String IdViajeCompleto;
+
     // agregado temporalmente en lo que logro el envio de listas.
-    public Ventana3 vent;
+    public Visual vent;
+    private int precioPorBoleto;
 
-    private int precioBoleto;
-    public PanelReserva(String id, String Recorrido, String Horario, Ventana3 vent) {
+    public PanelReserva(Visual vent) {
 
-        precioBoleto=asiento.getPresioPorNombre(id);
-        IdViajeCompleto =Recorrido+", "+Horario;
+        this.precioPorBoleto = rec.getPresio()+asi.getPresio()+bus.getPresio();
+        this.IdViajeCompleto = rec.getRecorrido()+hor.getHora()+asi.getNombre()+bus.getNombre();
         this.vent=vent;
-        System.out.println("El precio por ticket es: " + precioBoleto);
-        System.out.println("El recorrido y horario es: "+ Recorrido+" "+Horario);
+        System.out.println("El precio por ticket es: " + precioPorBoleto);
+        System.out.println("El recorrido y horario es: " + rec.getRecorrido()+" "+ hor.getHora());
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -45,6 +57,7 @@ public class PanelReserva extends JPanel {
 //        }
 
         //Todo esto crea el panel de botones con una bonita matriz
+
         int Columna=0;
         int Fila=0;
         int y=1;
@@ -72,39 +85,6 @@ public class PanelReserva extends JPanel {
         add(new Reservador());
 
     }
-    public class Reservador extends JButton{
-        public Reservador(){
-            setText("reservar");
-            addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-                    for (Object elemento : asientos) {
-                        if(elemento instanceof Asientos){
-                            Asientos bot = (Asientos) elemento;
-                            if (bot.getBackground() == Color.GREEN) {
-                                bot.Desactivacion();
-                                //NO BORRAR HASTA PRUEBA EN CARDLAYOUT
-                                //bot.setEnabled(false);
-                                //bot.setBackground(Color.RED);
-                                PrecioTotal=PrecioTotal+precioBoleto;
-                                System.out.println(PrecioTotal);
-                            }
-                        }else if(elemento instanceof String){
-                                System.out.println(elemento);
-                        }
-                    }
-                    vent.recibirLista(asientos);
-                    ;
-                    System.out.println(vent.getListaPrincipal().get(0).get(0) + "dfhsjadgh");
-                    System.out.println("El precio total de la compra es: " + PrecioTotal);
-                    PrecioTotal=0;
-                }
-            });
-
-        }
-    }
-
     public ArrayList<Object> BuscarRecorrido (ArrayList<ArrayList<Object>> listaPrincipal, String letra) {
 
         for (ArrayList<Object> arrayObjetivo : listaPrincipal) {
@@ -123,6 +103,77 @@ public class PanelReserva extends JPanel {
             }
         } return asientos;
     }
+
+//    public void mostrarPanelReserva() {
+//        // Crear botones en el segundo panel basado en el número seleccionado
+//        this.removeAll();
+//        this.setLayout(new GridLayout(0, 1));
+//        asignacionesRecorrido1=oa.obtenerAAsignacionFinal(rec);
+//        for (AsignacionFinal asignacion : asignacionesRecorrido1) {
+//            JButton boton = new JButton(asignacion.toString());
+//
+//            /**
+//             * Método para agregar acciones al presionar le jbutton del hora
+//             */
+//
+//            boton.addActionListener(new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    System.out.println(asignacion.toString());
+//                    asignacionFinal=asignacion;
+//                    hor=asignacion.getHorario();
+//                    asi=asignacion.getTipoAsiento();
+//                    bus=asignacion.getTipoBus();
+//
+//                }
+//            });
+//            this.add(boton);
+//        }
+////        // Cambiar al segundo panel
+////        this.show(mainPanel, "Panel2");
+//
+//        // Repintar el frame para que los cambios sean visibles
+//        revalidate();
+//        repaint();
+//    }
+
+    /**
+     * Este boton finaliza la reserva de los pasajes
+     */
+    public class Reservador extends JButton{
+        public Reservador(){
+            setText("reservar");
+            addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    for (Object elemento : asientos) {
+                        if(elemento instanceof Asientos){
+                            Asientos bot = (Asientos) elemento;
+                            if (bot.getBackground() == Color.GREEN) {
+                                bot.Desactivacion();
+                                //NO BORRAR HASTA PRUEBA EN CARDLAYOUT
+                                //bot.setEnabled(false);
+                                //bot.setBackground(Color.RED);
+                                PrecioTotal=PrecioTotal+precioPorBoleto;
+                                System.out.println(PrecioTotal);
+                            }
+                        }else if(elemento instanceof String){
+                                System.out.println(elemento);
+                        }
+                    }
+                    vent.recibirLista(asientos);
+                    ;
+                    System.out.println(vent.getListaPrincipal().get(0).get(0) + "dfhsjadgh");
+                    System.out.println("El precio total de la compra es: " + PrecioTotal);
+                    PrecioTotal=0;
+                }
+            });
+
+        }
+    }
+
+
 
 
 

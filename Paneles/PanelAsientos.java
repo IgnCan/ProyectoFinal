@@ -11,8 +11,9 @@ import java.awt.event.ActionListener;
  */
 public class PanelAsientos extends JPanel {
 
-
-
+    /**
+     * Método construtor
+     */
     public PanelAsientos(){
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

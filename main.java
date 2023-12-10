@@ -1,3 +1,4 @@
+//import Paneles.Ventana3;
 import Paneles.Visual;
 
 import javax.swing.JButton;
@@ -34,7 +35,9 @@ public class main {
 
         Visual v1 = new Visual();
         v1.setVisible(true);
-
+//
+//        Ventana3 v2= new Ventana3();
+//        v2.setVisible(true);
     }
 }
 
