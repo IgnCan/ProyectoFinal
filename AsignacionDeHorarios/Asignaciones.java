@@ -43,7 +43,7 @@ public class Asignaciones {
     /**
      * Métododo público que retorna todas las listas que tengan asignado el recorrido solicitado
      * @param rec
-     * @return List<AsignacionFinal> 
+     * @return List<AsignacionFinal> asing.obtenerAsignacionFinal(rec)
      */
     public List<AsignacionFinal> obtenerAAsignacionFinal(Recorrido rec) {
         return asing.obtenerAsignacionFinal(rec);

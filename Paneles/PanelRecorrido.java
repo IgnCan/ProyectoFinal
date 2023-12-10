@@ -1,5 +1,7 @@
 package Paneles;
 
+import Enums.Horario;
+import Enums.TipoAsiento;
 import Enums.TipoBus;
 import Enums.Recorrido;
 
@@ -13,7 +15,8 @@ import java.awt.event.ActionListener;
  */
 
 public class PanelRecorrido extends JPanel {
-//    private Recorrido rec;
+    private Recorrido rec;
+
     public PanelRecorrido(){
         Recorrido[] recorridos = Recorrido.values();
         this.setLayout(new GridLayout(0, 1));
@@ -23,10 +26,13 @@ public class PanelRecorrido extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     System.out.println(tipoAsiento.getRecorrido());
+                    rec=tipoAsiento;
                 }
             });
             this.add(button);
         }
-//        String rec = Recorrido.RECORRIDO4.getRecorrido();
+    }
+    public Recorrido getRec() {
+        return rec;
     }
 }
