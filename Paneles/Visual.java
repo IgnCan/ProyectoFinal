@@ -1,10 +1,11 @@
 package Paneles;
 
+import Enums.Recorrido;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
 
 /**
  * Es el Jframe principal donde se ejecutara todo, usa cardlayout para moverse entre paneles
@@ -13,10 +14,10 @@ public class Visual extends JFrame {
 
     CardLayout cardLayout = new CardLayout();
     PanelRecorrido panelRecorrido =new PanelRecorrido();
-
     PanelHorarios panelHorarios=new PanelHorarios();
-
     JPanel cardPanel = new JPanel(cardLayout);
+
+    Recorrido rec;
 
     public Visual()  {
         this.setSize(1000, 800);//Ancho y largo respectivamente
@@ -28,16 +29,6 @@ public class Visual extends JFrame {
 
         this.add(panelRecorrido);
         this.add(panelHorarios);
-
-//        JFrame frame = new JFrame("CardLayout Example");
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(300, 200);
-
-        // Crear el contenedor con CardLayout
-        // Supongo que este es el Jpanel principal que contiene todos los jpaneles que se iran cambiando en el cardlayout....
-//        JPanel cardPanel = new JPanel(cardLayout);
-
-
 
         // Crear dos paneles con contenido diferente
 

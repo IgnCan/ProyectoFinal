@@ -1,3 +1,6 @@
+package AsignacionDeHorarios;
+
+import AsignacionDeHorarios.AsignacionFinal;
 import Enums.Horario;
 import Enums.Recorrido;
 import Enums.TipoAsiento;
@@ -12,6 +15,7 @@ public class AsignacionHorarios {
         asignacionFinal.add(new AsignacionFinal(recorrido, horario, tipoAsiento, tipoBus));
         asignaciones.put(recorrido, asignacionFinal);
     }
+
 
     public List<AsignacionFinal> obtenerAsignacionFinal(Recorrido recorrido) {
         return asignaciones.getOrDefault(recorrido, Collections.emptyList());

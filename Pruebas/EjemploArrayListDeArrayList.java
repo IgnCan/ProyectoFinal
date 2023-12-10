@@ -2,6 +2,7 @@ package Pruebas;
 
 import java.util.ArrayList;
 // para sacar elemento especifico
+
 public class EjemploArrayListDeArrayList {
     public static void main(String[] args) {
         // Crear el ArrayList principal que contiene arr1 y arr2

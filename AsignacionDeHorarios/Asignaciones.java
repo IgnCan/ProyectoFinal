@@ -1,3 +1,5 @@
+package AsignacionDeHorarios;
+
 import Enums.Horario;
 import Enums.Recorrido;
 import Enums.TipoAsiento;
@@ -6,10 +8,18 @@ import Enums.TipoBus;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Clase Asignaciones
+ */
 public class Asignaciones {
-
+    /**
+     *
+     */
     private AsignacionHorarios asing = new AsignacionHorarios();
 
+    /**
+     *
+     */
     public Asignaciones(){
         // Asignacion a RECORRIDO1
         asing.AsingnacionFinal(Recorrido.RECORRIDO1, Horario.HORARIO_2, TipoAsiento.EJECUTIVO, TipoBus.DOS_PISOS);
@@ -28,6 +38,11 @@ public class Asignaciones {
         asing.AsingnacionFinal(Recorrido.RECORRIDO5, Horario.HORARIO_2, TipoAsiento.SEMI_CAMA, TipoBus.UNO_PISO);
     }
 
+    /**
+     *
+     * @param rec
+     * @return
+     */
     public List<AsignacionFinal> obtenerAAsignacionFinal(Recorrido rec) {
         return asing.obtenerAsignacionFinal(rec);
     }
