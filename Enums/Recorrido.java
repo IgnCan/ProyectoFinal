@@ -12,17 +12,31 @@ public enum Recorrido {
     RECORRIDO5("Concepcion-AntiguaRoma(200ac)", 99999);
 
     private String recorrido;
-
     private int presio;
+
+    /**
+     * Constructor del Enum que asigna las variables
+     * @param descripcion
+     * @param presio
+     */
 
     Recorrido(String descripcion, int presio) {
         this.recorrido = descripcion;
         this.presio=presio;
     }
 
+    /**
+     * Metodo público que retorna el recorrido pedido
+     * @return String recorrido
+     */
     public String getRecorrido() {
         return recorrido;
     }
+
+    /**
+     * Metodo público que retorna un entero con el valor del recorrido
+     * @return precio del recorrido
+     */
 
     public int getPresio(){
         return presio;

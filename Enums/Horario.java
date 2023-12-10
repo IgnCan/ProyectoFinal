@@ -6,20 +6,18 @@ package Enums;
 public enum Horario {
     HORARIO_1("8:00 AM"),
     HORARIO_2("10:00 AM");
-    /**
-     * @param hora hg
-     */
+
     private String hora;
     /**
-     *  contructor de hora
+     * Constructor de hora que asigna las variables
      */
     Horario(String hora) {
         this.hora = hora;
     }
 
     /**
-     *
-     * @return la hora en la que se raliza el recorrido
+     * Método publicó que retorna un String
+     * @return la hora en la que se realiza el recorrido
      */
     public String getHora() {
         return hora;

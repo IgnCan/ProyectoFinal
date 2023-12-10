@@ -55,11 +55,19 @@ public class ReservaPasajesApp {
 
         // Asignacion a RECORRIDO1
         asignacionHorarios.AsingnacionFinal(Recorrido.RECORRIDO1,Horario.HORARIO_2,TipoAsiento.EJECUTIVO,TipoBus.DOS_PISOS);
+        // Asignacion a RECORRIDO2
+        asignacionHorarios.AsingnacionFinal(Recorrido.RECORRIDO2,Horario.HORARIO_1,TipoAsiento.NORMAL,TipoBus.DOS_PISOS);
+        // Asignacion a RECORRIDO3
+        asignacionHorarios.AsingnacionFinal(Recorrido.RECORRIDO3, Horario.HORARIO_1, TipoAsiento.SEMI_CAMA, TipoBus.UNO_PISO);
+        asignacionHorarios.AsingnacionFinal(Recorrido.RECORRIDO3, Horario.HORARIO_1, TipoAsiento.EJECUTIVO, TipoBus.UNO_PISO);
+        // Asignacion a RECORRIDO4
+        asignacionHorarios.AsingnacionFinal(Recorrido.RECORRIDO4, Horario.HORARIO_1, TipoAsiento.S, TipoBus.UNO_PISO);
+        asignacionHorarios.AsingnacionFinal(Recorrido.RECORRIDO4, Horario.HORARIO_2, TipoAsiento.SEMI_CAMA, TipoBus.UNO_PISO);
+
 
         // Asignacion a RECORRIDO5
         asignacionHorarios.AsingnacionFinal(Recorrido.RECORRIDO5, Horario.HORARIO_1, TipoAsiento.SEMI_CAMA, TipoBus.UNO_PISO);
         asignacionHorarios.AsingnacionFinal(Recorrido.RECORRIDO5, Horario.HORARIO_2, TipoAsiento.NORMAL, TipoBus.DOS_PISOS);
-
 
 
 
@@ -79,6 +87,8 @@ public class ReservaPasajesApp {
         for (AsignacionFinal asignacion : asignacionesRecorrido1) {
             System.out.println("- " + asignacion);
         }
+
+
 
 
         //Imprimir Asignaciones para RECORRIDO5
