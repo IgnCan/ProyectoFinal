@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Ventana extends JFrame {
+public class Ventana3 extends JFrame {
     String idbus ="Semi-cama";
     String Recorrido="Talca-Concepcion";
     String Horario="08:00";
@@ -11,7 +11,7 @@ public class Ventana extends JFrame {
     PanelReserva bob = new PanelReserva(idbus, Recorrido, Horario, this);
     //PanelAsientos asientos = new PanelAsientos();
 
-    public Ventana()  {
+    public Ventana3()  {
         this.setSize(1000, 800);//Ancho y largo respectivamente
         setBackground(Color.CYAN);//Color de fondo
         setTitle("Coso de buses"); //Titulo

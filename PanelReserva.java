@@ -14,10 +14,10 @@ public class PanelReserva extends JPanel {
     private int PrecioTotal=0;
     private String IdViajeCompleto;
     // agregado temporalmente en lo que logro el envio de listas.
-    public Ventana vent;
+    public Ventana3 vent;
 
     private int precioBoleto;
-    public PanelReserva(String id, String Recorrido, String Horario, Ventana vent) {
+    public PanelReserva(String id, String Recorrido, String Horario, Ventana3 vent) {
 
         precioBoleto=asiento.getPresioPorNombre(id);
         IdViajeCompleto =Recorrido+", "+Horario;

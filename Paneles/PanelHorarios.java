@@ -24,8 +24,8 @@ public class PanelHorarios extends JPanel {
         this.setLayout(new GridLayout(0, 1));
         for (AsignacionFinal asignacion : asignacionesRecorrido1) {
             JButton boton = new JButton(asignacion.toString());
-            /**
-             * Método para agregar acciones al presionar le jbutton del hora
+
+             //Método para agregar acciones al presionar le jbutton del hora
             boton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {

@@ -54,14 +54,14 @@ public class Visual extends JFrame {
         cardPanel.add(panel2, "Panel3");
 
         // Crear botones para cambiar entre las tarjetas
-        JButton avanzarPanel = new JButton("prev");
-        JButton retrocederPanel = new JButton("next");
+        JButton retroPanel = new JButton("prev");
+        JButton avanPanel = new JButton("next");
 
 
         // Agregar ActionListener para cambiar entre las paneles
 
 
-        avanzarPanel.addActionListener(new ActionListener() {
+        retroPanel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -70,29 +70,35 @@ public class Visual extends JFrame {
             }
         });
 
-        retrocederPanel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                rec=panelRecorrido.getRec();
-                System.out.println(rec.getPresio() + rec.getRecorrido());
-                cardLayout.next(cardPanel);
-                showNextPanel();
-            }
-        });
+//        avanPanel.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                rec=panelRecorrido.getRec();
+//                avanPanel.setEnabled(false);
+//                if(rec!=null){
+//                    avanPanel.setEnabled(true);
+//                }
+//
+//                System.out.println(rec.getPresio() + rec.getRecorrido());
+//                //cardLayout.next(cardPanel);
+//                if (currentPanelIndex < cardPanel.getComponentCount() - 1) {
+//                    currentPanelIndex++;
+//                    cardLayout.show(cardPanel, "Panel" + (currentPanelIndex + 1));
+//
+//                    // Activar o desactivar el botón "Next" según el estado de tuObjeto
+//
+//                }
+//            }
+//        });
 
         // Crear un panel para los botones de cambio de tarjeta
         JPanel buttonPanel = new JPanel();
-        buttonPanel.add(avanzarPanel);
-        buttonPanel.add(retrocederPanel);
-
-
+        buttonPanel.add(retroPanel);
+        buttonPanel.add(avanPanel);
 
         // Agregar el contenedor con CardLayout y el panel de botones al frame
         this.add(cardPanel, BorderLayout.CENTER);
         this.add(buttonPanel, BorderLayout.SOUTH);
-
-
 
         // Hacer visible el frame
         this.setVisible(true);
@@ -114,6 +120,31 @@ public class Visual extends JFrame {
         this.bus = bus;
     }
 
+    public class AvanzarBot extends JButton{
+        public AvanzarBot(){
+            this.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    rec=panelRecorrido.getRec();
+                    setEnabled(false);
+                    if(rec!=null){
+                        setEnabled(true);
+                    }
+
+                    System.out.println(rec.getPresio() + rec.getRecorrido());
+                    //cardLayout.next(cardPanel);
+                    if (currentPanelIndex < cardPanel.getComponentCount() - 1) {
+                        currentPanelIndex++;
+                        cardLayout.show(cardPanel, "Panel" + (currentPanelIndex + 1));
+
+                        // Activar o desactivar el botón "Next" según el estado de tuObjeto
+
+                    }
+                }
+            });
+        }
+    }
+
     private void showPreviousPanel() {
         // Realizar la lógica específica para el botón Prev según el panel actual
         if (currentPanelIndex > 0) {
@@ -123,13 +154,25 @@ public class Visual extends JFrame {
         }
     }
 
-    private void showNextPanel() {
+    private void showNextPanel(JButton but) {
         // Realizar la lógica específica para el botón Next según el panel actual
-        if (currentPanelIndex < cardPanel.getComponentCount() - 1) {
+
+        if (currentPanelIndex < cardPanel.getComponentCount() - 1){
+//            but = (JButton) ((Container) getContentPane().getComponent(1)).getComponent(1);
+            but.setEnabled(rec != null);
             currentPanelIndex++;
             cardLayout.show(cardPanel, "Panel" + (currentPanelIndex + 1));
             System.out.println("anavso");
+
         }
+
+
+//        if (currentPanelIndex < cardPanel.getComponentCount() - 1) {
+//            currentPanelIndex++;
+//            cardLayout.show(cardPanel, "Panel" + (currentPanelIndex + 1));
+//            System.out.println("anavso");
+//        }
+
     }
 
 

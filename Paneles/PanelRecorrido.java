@@ -20,13 +20,13 @@ public class PanelRecorrido extends JPanel {
     public PanelRecorrido(){
         Recorrido[] recorridos = Recorrido.values();
         this.setLayout(new GridLayout(0, 1));
-        for (Recorrido tipoAsiento : recorridos) {
-            JButton button = new JButton(tipoAsiento.getRecorrido());
+        for (Recorrido reco : recorridos) {
+            JButton button = new JButton(reco.getRecorrido());
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    System.out.println(tipoAsiento.getRecorrido());
-                    rec=tipoAsiento;
+                    System.out.println(reco.getRecorrido());
+                    rec=reco;
                 }
             });
             this.add(button);

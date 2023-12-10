@@ -30,7 +30,7 @@ public class Asientos extends JButton {
      * el boton desactivado en compras multiples y guardar su estado al cambiar de bus, recorrido, etc.
      */
     public void Desactivacion(){
-        apagado=1;
+        this.apagado=1;
         setEnabled(false);
         setBackground(Color.RED);
     }
