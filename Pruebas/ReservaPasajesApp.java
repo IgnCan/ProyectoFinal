@@ -26,13 +26,13 @@ public class ReservaPasajesApp {
         private Horario horario;
         private TipoAsiento tipoAsiento;
         private TipoBus tipoBus;
-        private int presioCasiTotal;
+        private int presioTotal;
 
         public AsignacionFinal(Recorrido recorrido, Horario horario, TipoAsiento tipoAsiento, TipoBus tipoBus) {
             this.horario = horario;
             this.tipoAsiento = tipoAsiento;
             this.tipoBus = tipoBus;
-            this.presioCasiTotal= tipoAsiento.getPresio()+tipoBus.getPresio()+recorrido.getPresio();
+            this.presioTotal = tipoAsiento.getPresio()+tipoBus.getPresio()+recorrido.getPresio();
         }
         public Horario getHorario() {
             return horario;
@@ -45,7 +45,7 @@ public class ReservaPasajesApp {
         }
         @Override
         public String toString() {
-            return "Horario: " + horario.getHora() + ", Tipo de Asiento: " + tipoAsiento.getNombre() + ", Tipo de Bus: " + tipoBus.getNombre() + "; Precio del pasaje: "+ presioCasiTotal;
+            return "Horario: " + horario.getHora() + ", Tipo de Asiento: " + tipoAsiento.getNombre() + ", Tipo de Bus: " + tipoBus.getNombre() + "; Precio del pasaje: "+ presioTotal;
         }
     }
 
@@ -53,17 +53,39 @@ public class ReservaPasajesApp {
         // Crear una instancia de AsignacionHorarios
         AsignacionHorarios asignacionHorarios = new AsignacionHorarios();
 
-        // Asignar horarios, tipos de asientos y tipos de buses al Recorrido_1
+        // Asignacion a RECORRIDO1
+        asignacionHorarios.AsingnacionFinal(Recorrido.RECORRIDO1,Horario.HORARIO_2,TipoAsiento.EJECUTIVO,TipoBus.DOS_PISOS);
+
+        // Asignacion a RECORRIDO5
         asignacionHorarios.AsingnacionFinal(Recorrido.RECORRIDO5, Horario.HORARIO_1, TipoAsiento.SEMI_CAMA, TipoBus.UNO_PISO);
         asignacionHorarios.AsingnacionFinal(Recorrido.RECORRIDO5, Horario.HORARIO_2, TipoAsiento.NORMAL, TipoBus.DOS_PISOS);
 
-        // Obtener horarios, tipos de asientos y tipos de buses asignados al Recorrido_1
-        List<AsignacionFinal> asignacionesRecorrido1 = asignacionHorarios.obtenerAsignacionFinal(Recorrido.RECORRIDO5);
 
-        // Imprimir las asignaciones para el Recorrido_1
-        System.out.println("Asignaciones para " + Recorrido.RECORRIDO5.getRecorrido() + ":");
+
+
+
+
+
+        // Obtener horarios, tipos de asientos y tipos de buses asignados al Recorrido_1
+        List<AsignacionFinal> asignacionesRecorrido1 = asignacionHorarios.obtenerAsignacionFinal(Recorrido.RECORRIDO1);
+        List<AsignacionFinal> asignacionesRecorrido2 = asignacionHorarios.obtenerAsignacionFinal(Recorrido.RECORRIDO2);
+        List<AsignacionFinal> asignacionesRecorrido3 = asignacionHorarios.obtenerAsignacionFinal(Recorrido.RECORRIDO3);
+        List<AsignacionFinal> asignacionesRecorrido4 = asignacionHorarios.obtenerAsignacionFinal(Recorrido.RECORRIDO4);
+        List<AsignacionFinal> asignacionesRecorrido5 = asignacionHorarios.obtenerAsignacionFinal(Recorrido.RECORRIDO5);
+
+
+        //Imprimir asignaciones para RECORRIDO1
+        System.out.println("Asignaciones para " + Recorrido.RECORRIDO1.getRecorrido() + ":");
         for (AsignacionFinal asignacion : asignacionesRecorrido1) {
             System.out.println("- " + asignacion);
         }
+
+
+        //Imprimir Asignaciones para RECORRIDO5
+        System.out.println("Asignaciones para " + Recorrido.RECORRIDO5.getRecorrido() + ":");
+        for (AsignacionFinal asignacion : asignacionesRecorrido5) {
+            System.out.println("- " + asignacion);
+        }
+
     }
 }

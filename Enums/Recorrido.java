@@ -6,10 +6,10 @@ package Enums;
  */
 public enum Recorrido {
     RECORRIDO1("Concepcion-Talca", 300),
-    RECORRIDO2("Concepcion-Lota", 2000),
-    RECORRIDO3("Concepcion-Santiasco", 2000),
+    RECORRIDO2("Concepcion-Lota", 500),
+    RECORRIDO3("Concepcion-Santiasco", 1000),
     RECORRIDO4("Concepcion-Linares", 2000),
-    RECORRIDO5("Concepcion-AntiguaRoma", 99999);
+    RECORRIDO5("Concepcion-AntiguaRoma(200ac)", 99999);
 
     private String recorrido;
 

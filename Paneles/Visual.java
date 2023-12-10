@@ -14,6 +14,8 @@ public class Visual extends JFrame {
     CardLayout cardLayout = new CardLayout();
     PanelRecorrido panelRecorrido =new PanelRecorrido();
 
+    PanelHorarios panelHorarios=new PanelHorarios();
+
     JPanel cardPanel = new JPanel(cardLayout);
 
     public Visual()  {
@@ -25,6 +27,7 @@ public class Visual extends JFrame {
         setLayout(new BorderLayout());//Permite organizar los JPanel
 
         this.add(panelRecorrido);
+        this.add(panelHorarios);
 
 //        JFrame frame = new JFrame("CardLayout Example");
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,8 +40,6 @@ public class Visual extends JFrame {
 
 
         // Crear dos paneles con contenido diferente
-        JPanel panel1 = new JPanel();
-        panel1.add(new JLabel("Contenido de la tarjeta 1"));
 
         JPanel panel2 = new JPanel();
         panel2.add(new JLabel("Contenido de la tarjeta 2"));
@@ -46,7 +47,7 @@ public class Visual extends JFrame {
         // Agregar los paneles al contenedor con CardLayout
         // Le agrego el panel de Recorrido
         cardPanel.add(panelRecorrido,"PanelRecorrido.....");
-        cardPanel.add(panel1, "tarjeta1");
+        cardPanel.add(panelHorarios, "PanelHorarios.....");
         cardPanel.add(panel2, "tarjeta2");
 
         // Crear botones para cambiar entre las tarjetas
