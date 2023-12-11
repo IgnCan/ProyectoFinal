@@ -2,83 +2,58 @@ package Pruebas;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class MainFrame extends JFrame {
 
-    private ArrayList<ArrayList<Integer>> listaPrincipal;
+    private ArrayList<ArrayList<Object>> listaPrincipal;
 
     public MainFrame() {
         listaPrincipal = new ArrayList<>();
 
-        // Agregar sub-listas con identificadores
-        agregarSubLista("identificador1", 1);
-        agregarSubLista("identificador2", 2);
-        agregarSubLista("identificador3", 3);
-
         // Configurar el JFrame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Acceder y Modificar Sub-Listas");
-        setSize(400, 300);
+        setTitle("Agregar Sub-Lista");
+        setSize(300, 200);
 
-        // Crear un JPanel utilizando la clase SubListPanel
-        SubListPanel subListPanel = new SubListPanel(listaPrincipal, this::mostrarSubLista, this::agregarNuevaSubLista);
-        add(subListPanel);
+        // Crear un JPanel con un botón
+        JPanel panel = new JPanel();
+        JButton agregarSubListaButton = new JButton("Agregar Sub-Lista");
+        agregarSubListaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                agregarNuevaSubLista();
+            }
+        });
+        panel.add(agregarSubListaButton);
+
+        // Agregar el JPanel al JFrame
+        add(panel);
 
         // Mostrar el JFrame
         setVisible(true);
     }
 
-    private void agregarSubLista(String identificador, int valor) {
-        ArrayList<Integer> subLista = new ArrayList<>();
-        subLista.add(valor);
-        listaPrincipal.add(subLista);
-    }
+    private void agregarNuevaSubLista() {
+        String nuevoIdentificador = "hola"; // Puedes cambiar esto por una entrada del usuario
+        if (!existeIdentificador(nuevoIdentificador)) {
+            // Si el identificador no existe, crear una nueva sub-lista
+            ArrayList<Object> nuevaSubLista = new ArrayList<>();
+            nuevaSubLista.add(nuevoIdentificador);
+            // Puedes agregar más elementos a la sublista si es necesario
+            listaPrincipal.add(nuevaSubLista);
 
-    private void mostrarSubLista(String identificador) {
-        ArrayList<Integer> subListaEncontrada = buscarSubListaPorIdentificador(identificador);
-
-        if (subListaEncontrada != null) {
-            // Mostrar los elementos de la sub-lista en un diálogo o de alguna otra manera
-            JOptionPane.showMessageDialog(this, "Sub-Lista para " + identificador + ": " + subListaEncontrada);
+            JOptionPane.showMessageDialog(this, "Nueva sub-lista creada con identificador " + nuevoIdentificador);
         } else {
-            JOptionPane.showMessageDialog(this, "No se encontró ninguna sub-lista para " + identificador);
+            JOptionPane.showMessageDialog(this, "Ya existe una sub-lista con el identificador " + nuevoIdentificador);
         }
-    }
-
-    private void agregarNuevaSubLista(String nuevoIdentificador) {
-        // Si el identificador es "hola", llamar a la función mostrarSubLista
-        if ("hola".equals(nuevoIdentificador)) {
-            mostrarSubLista(nuevoIdentificador);
-        } else {
-            // Verificar si ya existe una sub-lista con el identificador
-            if (existeIdentificador(nuevoIdentificador)) {
-                // Si existe, llamar a la función mostrarSubLista
-                mostrarSubLista(nuevoIdentificador);
-            } else {
-                // Si no existe, crear una nueva sub-lista
-                ArrayList<Integer> nuevaSubLista = new ArrayList<>();
-                nuevaSubLista.add(0);  // Valor inicial para la nueva sub-lista (puedes ajustarlo según tus necesidades)
-                listaPrincipal.add(nuevaSubLista);
-
-                JOptionPane.showMessageDialog(this, "Nueva sub-lista creada con identificador " + nuevoIdentificador);
-            }
-        }
-    }
-
-    private ArrayList<Integer> buscarSubListaPorIdentificador(String identificadorBuscado) {
-        for (ArrayList<Integer> subLista : listaPrincipal) {
-            String identificador = Integer.toString(subLista.get(0));
-            if (identificador.equals(identificadorBuscado)) {
-                return subLista;
-            }
-        }
-        return null;
     }
 
     private boolean existeIdentificador(String identificador) {
-        for (ArrayList<Integer> subLista : listaPrincipal) {
-            String subListaIdentificador = Integer.toString(subLista.get(0));
+        for (ArrayList<Object> subLista : listaPrincipal) {
+            String subListaIdentificador = (String) subLista.get(0); // Suponiendo que el identificador está en la posición 0
             if (subListaIdentificador.equals(identificador)) {
                 return true;
             }
