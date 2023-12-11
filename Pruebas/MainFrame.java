@@ -24,14 +24,9 @@ public class MainFrame extends JFrame {
         setTitle("Agregar Sub-Lista");
         setSize(300, 200);
 
-        // Crear un JPanel con un botón
-        JPanel panel = new JPanel();
-        JButton agregarSubListaButton = new JButton("Agregar Sub-Lista");
-        agregarSubListaButton.addActionListener(e -> agregarNuevaSubLista());
-        panel.add(agregarSubListaButton);
-
-        // Agregar el JPanel al JFrame
-        add(panel);
+        // Crear un JPanel con el botón y agregarlo al JFrame
+        SubListPanel subListPanel = new SubListPanel(this::agregarNuevaSubLista, listaPrincipal);
+        add(subListPanel);
 
         // Mostrar el JFrame
         setVisible(true);

@@ -8,37 +8,28 @@ import java.util.ArrayList;
 
 public class SubListPanel extends JPanel {
 
-    private ArrayList<ArrayList<Integer>> listaPrincipal;
-    private SubListCallback crearNuevaSubListaCallback;
+    private MainFrame mainFrame;
+    private SubListCallback subListCallback;
+    private ArrayList<ArrayList<Object>> listaPrincipal;
 
-    public SubListPanel(ArrayList<ArrayList<Integer>> listaPrincipal, SubListCallback crearNuevaSubListaCallback) {
+    public SubListPanel(SubListCallback subListCallback, ArrayList<ArrayList<Object>> listaPrincipal) {
+        this.subListCallback = subListCallback;
         this.listaPrincipal = listaPrincipal;
-        this.crearNuevaSubListaCallback = crearNuevaSubListaCallback;
 
         setLayout(new FlowLayout());
 
-        // Crear botón para crear una nueva sub-lista
-        JButton nuevoIdentificadorButton = new JButton("Crear Nueva Sub-Lista");
-        nuevoIdentificadorButton.addActionListener(new ActionListener() {
+        // Crear botón para agregar nueva sub-lista
+        JButton agregarSubListaButton = new JButton("Agregar Sub-Lista");
+        agregarSubListaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Al presionar el botón, solicitar un nuevo identificador
-                String nuevoIdentificador = JOptionPane.showInputDialog("Ingrese el nuevo identificador:");
-                if (nuevoIdentificador != null && !nuevoIdentificador.trim().isEmpty()) {
-                    // Llamar a la función para crear una nueva sub-lista
-                    crearNuevaSubListaCallback.crearNuevaSubLista(nuevoIdentificador);
-                }
+                subListCallback.mostrarSubLista();
             }
         });
-        add(nuevoIdentificadorButton);
+        add(agregarSubListaButton);
     }
 
-    // Interfaz funcional para manejar la acción de crear una nueva sub-lista
     public interface SubListCallback {
-        void crearNuevaSubLista(String nuevoIdentificador);
+        void mostrarSubLista();
     }
 }
-
-
-
-
