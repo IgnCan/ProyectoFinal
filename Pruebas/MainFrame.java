@@ -2,8 +2,6 @@ package Pruebas;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class MainFrame extends JFrame {
@@ -13,6 +11,14 @@ public class MainFrame extends JFrame {
     public MainFrame() {
         listaPrincipal = new ArrayList<>();
 
+        // Agregar sublistas predefinidas con JButton
+        JButton boton1 = new JButton("Botón 1");
+        JButton boton2 = new JButton("Botón 2");
+
+        agregarSubListaPredefinida("identificador1", boton1, boton2);
+        agregarSubListaPredefinida("identificador2", boton1, boton2);
+        agregarSubListaPredefinida("identificador3", boton1, boton2);
+
         // Configurar el JFrame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Agregar Sub-Lista");
@@ -21,12 +27,7 @@ public class MainFrame extends JFrame {
         // Crear un JPanel con un botón
         JPanel panel = new JPanel();
         JButton agregarSubListaButton = new JButton("Agregar Sub-Lista");
-        agregarSubListaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                agregarNuevaSubLista();
-            }
-        });
+        agregarSubListaButton.addActionListener(e -> agregarNuevaSubLista());
         panel.add(agregarSubListaButton);
 
         // Agregar el JPanel al JFrame
@@ -42,6 +43,11 @@ public class MainFrame extends JFrame {
             // Si el identificador no existe, crear una nueva sub-lista
             ArrayList<Object> nuevaSubLista = new ArrayList<>();
             nuevaSubLista.add(nuevoIdentificador);
+
+            // Agregar dos JButton como elementos a la sublista
+            nuevaSubLista.add(new JButton("Botón 1"));
+            nuevaSubLista.add(new JButton("Botón 2"));
+
             // Puedes agregar más elementos a la sublista si es necesario
             listaPrincipal.add(nuevaSubLista);
 
@@ -49,6 +55,21 @@ public class MainFrame extends JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Ya existe una sub-lista con el identificador " + nuevoIdentificador);
         }
+    }
+
+    private void agregarSubListaPredefinida(String identificador, JButton boton1, JButton boton2) {
+        // Crear una sublista predefinida
+        ArrayList<Object> subLista = new ArrayList<>();
+        subLista.add(identificador);
+
+        // Agregar los botones a la sublista
+        subLista.add(boton1);
+        subLista.add(boton2);
+
+        // Puedes agregar más elementos a la sublista si es necesario
+
+        // Agregar la sublista predefinida a la lista principal
+        listaPrincipal.add(subLista);
     }
 
     private boolean existeIdentificador(String identificador) {
