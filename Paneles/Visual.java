@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Es el Jframe principal donde se ejecutara todo, usa cardlayout para moverse entre paneles
  */
 public class Visual extends JFrame {
-
+    //Variabe Marcada
     ArrayList<ArrayList<Object>> listaPrincipal = new ArrayList<>();
 
 
@@ -25,7 +25,8 @@ public class Visual extends JFrame {
     CardLayout cardLayout = new CardLayout();
     PanelRecorrido panelRecorrido =new PanelRecorrido();
     PanelHorarios panelHorarios = new PanelHorarios();
-    PanelReserva panelReserva =new PanelReserva(this);
+    //Variable Marcada
+    PanelReserva panelReserva =new PanelReserva();
     //El cardLayout
     JPanel cardPanel = new JPanel(cardLayout);
     //Las variables que se iran modificando en el proceso
@@ -122,7 +123,7 @@ public class Visual extends JFrame {
                         panelReserva.setBus(bus);
                         panelReserva.setHor(hor);
                         panelReserva.setAsignacionFinal(asignacionFinal);
-                        panelReserva.mostrarPanelReserva();
+                        panelReserva.mostrarPanelReserva(Visual.this);
                         cardLayout.next(cardPanel);
 
 
@@ -166,6 +167,8 @@ public class Visual extends JFrame {
         }
     }
 
+
+    // Metodo marcado
     /**
      * Se encarga de recibir la lista con los "pasajes" (botones desactivados)
      * ya comprados, y asi guardarlos al realizar compras multiples
@@ -174,7 +177,7 @@ public class Visual extends JFrame {
     public void recibirLista(ArrayList lista){
         listaPrincipal.add(lista);
     }
-
+    // Metodo marcado
     public ArrayList<ArrayList<Object>> getListaPrincipal() {
         return listaPrincipal;
     }

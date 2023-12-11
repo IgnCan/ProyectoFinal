@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class PanelReserva extends JPanel {
+    //Metodo Marcado
     private ArrayList<Object> asientos = new ArrayList<>();
 
 
@@ -35,10 +36,8 @@ public class PanelReserva extends JPanel {
     public Visual vent;
     private int precioPorBoleto;
 
-    public PanelReserva(Visual vent) {
-        this.vent=vent;
-        ArrayList<Object> elementoObjetivo = BuscarRecorrido(vent.listaPrincipal, IdViajeCompleto);
-        this.asientos=elementoObjetivo;
+    public PanelReserva() {
+//        this.vent=vent;
 
 //        this.precioPorBoleto = rec.getPresio()+asi.getPresio()+bus.getPresio();
 //        this.IdViajeCompleto = rec.getRecorrido()+hor.getHora()+asi.getNombre()+bus.getNombre();
@@ -96,12 +95,13 @@ public class PanelReserva extends JPanel {
     }
 
 
-        public void mostrarPanelReserva() {
+        public void mostrarPanelReserva(Visual vent) {
         // Crear botones en el segundo panel basado en el número seleccionado
-        this.removeAll();
+            this.removeAll();
+
             this.precioPorBoleto = rec.getPresio()+asi.getPresio()+bus.getPresio();
             this.IdViajeCompleto = rec.getRecorrido()+hor.getHora()+asi.getNombre()+bus.getNombre();
-            this.vent=vent;
+//            ArrayList<Object> elementoObjetivo = BuscarRecorrido(vent.listaPrincipal, IdViajeCompleto);
             System.out.println("El precio por ticket es: " + precioPorBoleto);
             System.out.println("El recorrido y horario es: " + rec.getRecorrido()+" "+ hor.getHora());
 
@@ -228,7 +228,7 @@ public class PanelReserva extends JPanel {
                         }
                     }
                     vent.recibirLista(asientos);
-                    ;
+
                     System.out.println(vent.getListaPrincipal().get(0).get(0) + "dfhsjadgh");
                     System.out.println("El precio total de la compra es: " + PrecioTotal);
                     PrecioTotal=0;
