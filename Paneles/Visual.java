@@ -52,6 +52,7 @@ public class Visual extends JFrame {
 
         this.add(panelRecorrido);
         this.add(panelHorarios);
+        this.add(panelReserva);
 
         // Agregar los paneles al contenedor con CardLayout
         // Le agrego el panel de Recorrido
@@ -116,7 +117,16 @@ public class Visual extends JFrame {
 
                     } else if (rec!=null && bus!=null && asi!=null && hor!=null && currentPanelIndex == 1) {
 //                        panelHorarios.setRec(rec);
+                        panelReserva.setRec(rec);
+                        panelReserva.setAsi(asi);
+                        panelReserva.setBus(bus);
+                        panelReserva.setHor(hor);
+                        panelReserva.setAsignacionFinal(asignacionFinal);
+
                         cardLayout.next(cardPanel);
+
+                        panelReserva.mostrarPanelReserva();
+
                         currentPanelIndex=currentPanelIndex+1;
 
                     } else if (currentPanelIndex == 2 ) {

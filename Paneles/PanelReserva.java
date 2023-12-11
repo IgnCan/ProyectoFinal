@@ -17,11 +17,17 @@ public class PanelReserva extends JPanel {
     private ArrayList<Object> asientos = new ArrayList<>();
 
 
-    private Recorrido rec = Recorrido.RECORRIDO1;
-    private Horario hor = Horario.HORARIO_3;
-    private TipoAsiento asi = TipoAsiento.EJECUTIVO;
-    private TipoBus bus = TipoBus.DOS_PISOS;
+    private Recorrido rec;
+    private Horario hor;
+    private TipoAsiento asi;
+    private TipoBus bus;
     private AsignacionFinal asignacionFinal;
+
+//    private Recorrido rec = Recorrido.RECORRIDO1;
+//    private Horario hor = Horario.HORARIO_3;
+//    private TipoAsiento asi = TipoAsiento.EJECUTIVO;
+//    private TipoBus bus = TipoBus.DOS_PISOS;
+//    private AsignacionFinal asignacionFinal;
     private int PrecioTotal;
     private String IdViajeCompleto;
 
@@ -85,6 +91,41 @@ public class PanelReserva extends JPanel {
         add(new Reservador());
 
     }
+
+
+        public void mostrarPanelReserva() {
+        // Crear botones en el segundo panel basado en el número seleccionado
+        this.removeAll();
+        this.setLayout(new GridLayout(0, 1));
+        asignacionesRecorrido1=oa.obtenerAAsignacionFinal(rec);
+        for (AsignacionFinal asignacion : asignacionesRecorrido1) {
+            JButton boton = new JButton(asignacion.toString());
+
+            /**
+             * Método para agregar acciones al presionar le jbutton del hora
+             */
+
+            boton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println(asignacion.toString());
+                    asignacionFinal=asignacion;
+                    hor=asignacion.getHorario();
+                    asi=asignacion.getTipoAsiento();
+                    bus=asignacion.getTipoBus();
+
+                }
+            });
+            this.add(boton);
+        }
+//        // Cambiar al segundo panel
+//        this.show(mainPanel, "Panel2");
+
+        // Repintar el frame para que los cambios sean visibles
+        revalidate();
+        repaint();
+    }
+
     public ArrayList<Object> BuscarRecorrido (ArrayList<ArrayList<Object>> listaPrincipal, String letra) {
 
         for (ArrayList<Object> arrayObjetivo : listaPrincipal) {
@@ -104,38 +145,27 @@ public class PanelReserva extends JPanel {
         } return asientos;
     }
 
-//    public void mostrarPanelReserva() {
-//        // Crear botones en el segundo panel basado en el número seleccionado
-//        this.removeAll();
-//        this.setLayout(new GridLayout(0, 1));
-//        asignacionesRecorrido1=oa.obtenerAAsignacionFinal(rec);
-//        for (AsignacionFinal asignacion : asignacionesRecorrido1) {
-//            JButton boton = new JButton(asignacion.toString());
-//
-//            /**
-//             * Método para agregar acciones al presionar le jbutton del hora
-//             */
-//
-//            boton.addActionListener(new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//                    System.out.println(asignacion.toString());
-//                    asignacionFinal=asignacion;
-//                    hor=asignacion.getHorario();
-//                    asi=asignacion.getTipoAsiento();
-//                    bus=asignacion.getTipoBus();
-//
-//                }
-//            });
-//            this.add(boton);
-//        }
-////        // Cambiar al segundo panel
-////        this.show(mainPanel, "Panel2");
-//
-//        // Repintar el frame para que los cambios sean visibles
-//        revalidate();
-//        repaint();
-//    }
+    public void setRec(Recorrido rec) {
+        this.rec = rec;
+    }
+
+    public void setHor(Horario hor) {
+        this.hor = hor;
+    }
+
+    public void setAsi(TipoAsiento asi) {
+        this.asi = asi;
+    }
+
+    public void setBus(TipoBus bus) {
+        this.bus = bus;
+    }
+
+    public void setAsignacionFinal(AsignacionFinal asignacionFinal) {
+        this.asignacionFinal = asignacionFinal;
+    }
+
+
 
     /**
      * Este boton finaliza la reserva de los pasajes
