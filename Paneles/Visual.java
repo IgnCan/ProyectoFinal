@@ -29,11 +29,11 @@ public class Visual extends JFrame {
     //El cardLayout
     JPanel cardPanel = new JPanel(cardLayout);
     //Las variables que se iran modificando en el proceso
-    private Recorrido rec;
-    private Horario hor;
-    private TipoAsiento asi;
-    private TipoBus bus;
-    private AsignacionFinal asignacionFinal;
+    private Recorrido rec =null;
+    private Horario hor=null;
+    private TipoAsiento asi=null;
+    private TipoBus bus=null;
+    private AsignacionFinal asignacionFinal=null;
 
     //Variable que identifica el Jpanen en el que estamos
     private int currentPanelIndex;
@@ -122,10 +122,10 @@ public class Visual extends JFrame {
                         panelReserva.setBus(bus);
                         panelReserva.setHor(hor);
                         panelReserva.setAsignacionFinal(asignacionFinal);
-
+                        panelReserva.mostrarPanelReserva();
                         cardLayout.next(cardPanel);
 
-                        panelReserva.mostrarPanelReserva();
+
 
                         currentPanelIndex=currentPanelIndex+1;
 
@@ -151,13 +151,15 @@ public class Visual extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     if(currentPanelIndex==1){
                         rec=null;
-                        currentPanelIndex=0;
+                        currentPanelIndex=currentPanelIndex-1;
+                        cardLayout.previous(cardPanel);
                     } else if (currentPanelIndex==2) {
                         bus=null;
                         asi=null;
                         hor=null;
                         asignacionFinal = null;
-                        currentPanelIndex=1;
+                        currentPanelIndex=currentPanelIndex-1;
+                        cardLayout.previous(cardPanel);
                     }
                 }
             });

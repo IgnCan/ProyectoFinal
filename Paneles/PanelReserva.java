@@ -36,22 +36,84 @@ public class PanelReserva extends JPanel {
     private int precioPorBoleto;
 
     public PanelReserva(Visual vent) {
-
-        this.precioPorBoleto = rec.getPresio()+asi.getPresio()+bus.getPresio();
-        this.IdViajeCompleto = rec.getRecorrido()+hor.getHora()+asi.getNombre()+bus.getNombre();
         this.vent=vent;
-        System.out.println("El precio por ticket es: " + precioPorBoleto);
-        System.out.println("El recorrido y horario es: " + rec.getRecorrido()+" "+ hor.getHora());
-
-        setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        //this.asientos= new BuscarRecorrido(vent.listaPrincipal,IdViajeCompleto);
-
         ArrayList<Object> elementoObjetivo = BuscarRecorrido(vent.listaPrincipal, IdViajeCompleto);
         this.asientos=elementoObjetivo;
 
-        //Esto crea una lista con los botones, la idea es dejarla a parte para ir modificando los botones//
-        //en masa de ser necesario, NO BORRAR HASTA PRUEBA CON CARDLAYOUT
+//        this.precioPorBoleto = rec.getPresio()+asi.getPresio()+bus.getPresio();
+//        this.IdViajeCompleto = rec.getRecorrido()+hor.getHora()+asi.getNombre()+bus.getNombre();
+//        this.vent=vent;
+//        System.out.println("El precio por ticket es: " + precioPorBoleto);
+//        System.out.println("El recorrido y horario es: " + rec.getRecorrido()+" "+ hor.getHora());
+//
+//        setLayout(new GridBagLayout());
+//        GridBagConstraints gbc = new GridBagConstraints();
+//        //this.asientos= new BuscarRecorrido(vent.listaPrincipal,IdViajeCompleto);
+//
+//        ArrayList<Object> elementoObjetivo = BuscarRecorrido(vent.listaPrincipal, IdViajeCompleto);
+//        this.asientos=elementoObjetivo;
+//
+//        //Esto crea una lista con los botones, la idea es dejarla a parte para ir modificando los botones//
+//        //en masa de ser necesario, NO BORRAR HASTA PRUEBA CON CARDLAYOUT
+////        int NumeroAsiento=1;
+////        for (int i=1; i<=41;i=i+1){
+////            if (i==1){
+////                asientos.add(IdViajeCompleto);
+////            } else {
+////                asientos.add(new Asientos("Asiento " + NumeroAsiento));
+////                NumeroAsiento = NumeroAsiento + 1;
+////            }
+////        }
+//
+//        //Todo esto crea el panel de botones con una bonita matriz
+//
+//        int Columna=0;
+//        int Fila=0;
+//        int y=1;
+//
+//        for (int i = 1; i <= 50; i++) {
+//            gbc.gridy = Columna;
+//            gbc.gridx = Fila;
+//            if (i%5==3){
+//                JLabel relleno = new JLabel("                     ");
+//                add(relleno,gbc);
+//                Fila=Fila+1;
+//            } else {
+//
+//                add((Component) elementoObjetivo.get(y),gbc);
+//                Fila=Fila+1;
+//                //NumeroAsiento=NumeroAsiento+1;
+//                y=y+1;
+//
+//            }
+//            if (i%5==0){Columna=Columna+1;Fila=0;}
+//        }
+//
+//        gbc.gridy = 10;
+//        gbc.gridx = 10;
+//        add(new Reservador());
+
+    }
+
+
+        public void mostrarPanelReserva() {
+        // Crear botones en el segundo panel basado en el número seleccionado
+        this.removeAll();
+            this.precioPorBoleto = rec.getPresio()+asi.getPresio()+bus.getPresio();
+            this.IdViajeCompleto = rec.getRecorrido()+hor.getHora()+asi.getNombre()+bus.getNombre();
+            this.vent=vent;
+            System.out.println("El precio por ticket es: " + precioPorBoleto);
+            System.out.println("El recorrido y horario es: " + rec.getRecorrido()+" "+ hor.getHora());
+
+            setLayout(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
+            //this.asientos= new BuscarRecorrido(vent.listaPrincipal,IdViajeCompleto);
+
+            ArrayList<Object> elementoObjetivo = BuscarRecorrido(vent.listaPrincipal, IdViajeCompleto);
+            this.asientos=elementoObjetivo;
+
+            //Esto crea una lista con los botones, la idea es dejarla a parte para ir modificando los botones//
+            //en masa de ser necesario, NO BORRAR HASTA PRUEBA CON CARDLAYOUT
 //        int NumeroAsiento=1;
 //        for (int i=1; i<=41;i=i+1){
 //            if (i==1){
@@ -62,62 +124,33 @@ public class PanelReserva extends JPanel {
 //            }
 //        }
 
-        //Todo esto crea el panel de botones con una bonita matriz
+            //Todo esto crea el panel de botones con una bonita matriz
 
-        int Columna=0;
-        int Fila=0;
-        int y=1;
+            int Columna=0;
+            int Fila=0;
+            int y=1;
 
-        for (int i = 1; i <= 50; i++) {
-            gbc.gridy = Columna;
-            gbc.gridx = Fila;
-            if (i%5==3){
-                JLabel relleno = new JLabel("                     ");
-                add(relleno,gbc);
-                Fila=Fila+1;
-            } else {
+            for (int i = 1; i <= 50; i++) {
+                gbc.gridy = Columna;
+                gbc.gridx = Fila;
+                if (i%5==3){
+                    JLabel relleno = new JLabel("                     ");
+                    add(relleno,gbc);
+                    Fila=Fila+1;
+                } else {
 
-                add((Component) elementoObjetivo.get(y),gbc);
-                Fila=Fila+1;
-                //NumeroAsiento=NumeroAsiento+1;
-                y=y+1;
-
-            }
-            if (i%5==0){Columna=Columna+1;Fila=0;}
-        }
-
-        gbc.gridy = 10;
-        gbc.gridx = 10;
-        add(new Reservador());
-
-    }
-
-
-        public void mostrarPanelReserva() {
-        // Crear botones en el segundo panel basado en el número seleccionado
-        this.removeAll();
-        this.setLayout(new GridLayout(0, 1));
-        asignacionesRecorrido1=oa.obtenerAAsignacionFinal(rec);
-        for (AsignacionFinal asignacion : asignacionesRecorrido1) {
-            JButton boton = new JButton(asignacion.toString());
-
-            /**
-             * Método para agregar acciones al presionar le jbutton del hora
-             */
-
-            boton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    System.out.println(asignacion.toString());
-                    asignacionFinal=asignacion;
-                    hor=asignacion.getHorario();
-                    asi=asignacion.getTipoAsiento();
-                    bus=asignacion.getTipoBus();
+                    add((Component) elementoObjetivo.get(y),gbc);
+                    Fila=Fila+1;
+                    //NumeroAsiento=NumeroAsiento+1;
+                    y=y+1;
 
                 }
-            });
-            this.add(boton);
-        }
+                if (i%5==0){Columna=Columna+1;Fila=0;}
+            }
+
+            gbc.gridy = 10;
+            gbc.gridx = 10;
+            add(new Reservador());
 //        // Cambiar al segundo panel
 //        this.show(mainPanel, "Panel2");
 
@@ -130,9 +163,11 @@ public class PanelReserva extends JPanel {
 
         for (ArrayList<Object> arrayObjetivo : listaPrincipal) {
             if (arrayObjetivo.contains(letra)) {
+                System.out.println("se encontro recorrido");
                 return arrayObjetivo; // Encontro el recorrido y devolvera su arraylist
             }
         }
+
         System.out.println("No se encontro recorrido");
         int NumeroAsiento=1;
         for (int i=1; i<=41;i=i+1){
@@ -186,7 +221,7 @@ public class PanelReserva extends JPanel {
                                 //bot.setEnabled(false);
                                 //bot.setBackground(Color.RED);
                                 PrecioTotal=PrecioTotal+precioPorBoleto;
-                                System.out.println(PrecioTotal);
+                                //System.out.println(PrecioTotal);
                             }
                         }else if(elemento instanceof String){
                                 System.out.println(elemento);

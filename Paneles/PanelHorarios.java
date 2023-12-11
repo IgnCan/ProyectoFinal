@@ -57,7 +57,7 @@ public class PanelHorarios extends JPanel {
      */
 
     public void mostrarPanelHorario() {
-        // Crear botones en el segundo panel basado en el número seleccionado
+
         this.removeAll();
         this.setLayout(new GridLayout(0, 1));
         asignacionesRecorrido1=oa.obtenerAAsignacionFinal(rec);
