@@ -14,29 +14,33 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class PanelReserva extends JPanel {
+    private ArrayList<ArrayList<Object>> listaPrincipal;
+    private SubListCallback callback;
+
+    private ArrayList<Object> asientos;
     //Metodo Marcado
-    private ArrayList<Object> asientos = new ArrayList<>();
+//    private Recorrido rec;
+//    private Horario hor;
+//    private TipoAsiento asi;
+//    private TipoBus bus;
 
-
-    private Recorrido rec;
-    private Horario hor;
-    private TipoAsiento asi;
-    private TipoBus bus;
+    private Recorrido rec=Recorrido.RECORRIDO1;
+    private Horario hor=Horario.HORARIO_3;
+    private TipoAsiento asi=TipoAsiento.EJECUTIVO;
+    private TipoBus bus=TipoBus.DOS_PISOS;
     private AsignacionFinal asignacionFinal;
 
-//    private Recorrido rec = Recorrido.RECORRIDO1;
-//    private Horario hor = Horario.HORARIO_3;
-//    private TipoAsiento asi = TipoAsiento.EJECUTIVO;
-//    private TipoBus bus = TipoBus.DOS_PISOS;
-//    private AsignacionFinal asignacionFinal;
     private int PrecioTotal;
     private String IdViajeCompleto;
 
     // agregado temporalmente en lo que logro el envio de listas.
-    public Visual vent;
+    //public Visual vent;
     private int precioPorBoleto;
 
-    public PanelReserva() {
+
+    public PanelReserva(ArrayList<ArrayList<Object>> listaPrincipal, SubListCallback callback) {
+        this.listaPrincipal=listaPrincipal;
+        this.callback=callback;
 //        this.vent=vent;
 
 //        this.precioPorBoleto = rec.getPresio()+asi.getPresio()+bus.getPresio();
@@ -95,7 +99,7 @@ public class PanelReserva extends JPanel {
     }
 
 
-        public void mostrarPanelReserva(Visual vent) {
+        public void mostrarPanelReserva() {
         // Crear botones en el segundo panel basado en el número seleccionado
             this.removeAll();
 
@@ -109,7 +113,7 @@ public class PanelReserva extends JPanel {
             GridBagConstraints gbc = new GridBagConstraints();
             //this.asientos= new BuscarRecorrido(vent.listaPrincipal,IdViajeCompleto);
 
-            ArrayList<Object> elementoObjetivo = BuscarRecorrido(vent.listaPrincipal, IdViajeCompleto);
+            ArrayList<Object> elementoObjetivo = BuscarRecorrido(listaPrincipal, IdViajeCompleto);
             this.asientos=elementoObjetivo;
 
             //Esto crea una lista con los botones, la idea es dejarla a parte para ir modificando los botones//
@@ -180,26 +184,6 @@ public class PanelReserva extends JPanel {
         } return asientos;
     }
 
-    public void setRec(Recorrido rec) {
-        this.rec = rec;
-    }
-
-    public void setHor(Horario hor) {
-        this.hor = hor;
-    }
-
-    public void setAsi(TipoAsiento asi) {
-        this.asi = asi;
-    }
-
-    public void setBus(TipoBus bus) {
-        this.bus = bus;
-    }
-
-    public void setAsignacionFinal(AsignacionFinal asignacionFinal) {
-        this.asignacionFinal = asignacionFinal;
-    }
-
 
 
     /**
@@ -207,7 +191,7 @@ public class PanelReserva extends JPanel {
      */
     public class Reservador extends JButton{
         public Reservador(){
-            setText("reservar");
+            setText("Reservar");
             addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -227,9 +211,9 @@ public class PanelReserva extends JPanel {
                                 System.out.println(elemento);
                         }
                     }
-                    vent.recibirLista(asientos);
-
-                    System.out.println(vent.getListaPrincipal().get(0).get(0) + "dfhsjadgh");
+//                    vent.recibirLista(asientos);
+//
+//                    System.out.println(listaPrincipal().get(0).get(0) + "dfhsjadgh");
                     System.out.println("El precio total de la compra es: " + PrecioTotal);
                     PrecioTotal=0;
                 }
@@ -238,8 +222,33 @@ public class PanelReserva extends JPanel {
         }
     }
 
+    // Interfaz funcional para manejar la acción de mostrar una sub-lista
+    public interface SubListCallback {
+        void mostrarSubLista(String identificador);
+    }
 
 
+
+
+    public void setRec(Recorrido rec) {
+        this.rec = rec;
+    }
+
+    public void setHor(Horario hor) {
+        this.hor = hor;
+    }
+
+    public void setAsi(TipoAsiento asi) {
+        this.asi = asi;
+    }
+
+    public void setBus(TipoBus bus) {
+        this.bus = bus;
+    }
+
+    public void setAsignacionFinal(AsignacionFinal asignacionFinal) {
+        this.asignacionFinal = asignacionFinal;
+    }
 
 
 }

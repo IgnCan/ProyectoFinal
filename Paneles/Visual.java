@@ -18,7 +18,8 @@ import java.util.ArrayList;
  */
 public class Visual extends JFrame {
     //Variabe Marcada
-    ArrayList<ArrayList<Object>> listaPrincipal = new ArrayList<>();
+
+    private ArrayList<ArrayList<Object>> listaPrincipal;
 
 
     // Estos son los paneles
@@ -26,7 +27,10 @@ public class Visual extends JFrame {
     PanelRecorrido panelRecorrido =new PanelRecorrido();
     PanelHorarios panelHorarios = new PanelHorarios();
     //Variable Marcada
-    PanelReserva panelReserva =new PanelReserva();
+    PanelReserva panelReserva =new PanelReserva(listaPrincipal,this::mostrarSubLista);
+
+
+
     //El cardLayout
     JPanel cardPanel = new JPanel(cardLayout);
     //Las variables que se iran modificando en el proceso
@@ -50,6 +54,8 @@ public class Visual extends JFrame {
         setLocationRelativeTo(null); //Centra el programa al abrirlo
         setDefaultCloseOperation(EXIT_ON_CLOSE); //Cierra el programa al cerrar la ventana
         setLayout(new BorderLayout());//Permite organizar los JPanel
+
+        listaPrincipal = new ArrayList<>();
 
         this.add(panelRecorrido);
         this.add(panelHorarios);
@@ -94,6 +100,30 @@ public class Visual extends JFrame {
         this.bus = bus;
     }
 
+    private void mostrarSubLista(String identificador) {
+        ArrayList<Object> subListaEncontrada = buscarSubListaPorIdentificador(identificador);
+
+        if (subListaEncontrada != null) {
+            // Mostrar los elementos de la sub-lista en un diálogo o de alguna otra manera
+            JOptionPane.showMessageDialog(this, "Sub-Lista para " + identificador + ": " + subListaEncontrada);
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontró ninguna sub-lista para " + identificador);
+        }
+    }
+
+    private ArrayList<Object> buscarSubListaPorIdentificador(String identificadorBuscado) {
+        for (ArrayList<Object> subLista : listaPrincipal) {
+            String identificador = (String) subLista.get(0);
+            if (identificador.equals(identificadorBuscado)) {
+                return subLista;
+            }
+        }
+        return null;
+    }
+
+
+
+
     public class AvanzarBot extends JButton{
         public AvanzarBot(String text){
             super(text);
@@ -123,7 +153,7 @@ public class Visual extends JFrame {
                         panelReserva.setBus(bus);
                         panelReserva.setHor(hor);
                         panelReserva.setAsignacionFinal(asignacionFinal);
-                        panelReserva.mostrarPanelReserva(Visual.this);
+                        panelReserva.mostrarPanelReserva();
                         cardLayout.next(cardPanel);
 
 
@@ -165,21 +195,6 @@ public class Visual extends JFrame {
                 }
             });
         }
-    }
-
-
-    // Metodo marcado
-    /**
-     * Se encarga de recibir la lista con los "pasajes" (botones desactivados)
-     * ya comprados, y asi guardarlos al realizar compras multiples
-     * @param lista Lista con botones "Asientos" y un string identificatorio al principio del array
-     */
-    public void recibirLista(ArrayList lista){
-        listaPrincipal.add(lista);
-    }
-    // Metodo marcado
-    public ArrayList<ArrayList<Object>> getListaPrincipal() {
-        return listaPrincipal;
     }
 
 }
