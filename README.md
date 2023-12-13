@@ -13,9 +13,8 @@ Ignacio Candia\
 #Problemas encontrados:
 
 -Dificultades en encontrar los patrones de diseño que se acomodara a nuestras necesidades.\
-
--
--
+-El desarroo de el sistema de compra, ya que la implementascion de sublistas con distintos tipos de objetos que almacenara los pasajes y sus respectivos datos fue muy confuso.\
+- Distribucion del tiempo,
 -
 
 
