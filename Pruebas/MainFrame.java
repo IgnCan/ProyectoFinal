@@ -51,6 +51,8 @@ public class MainFrame extends JFrame {
             listaPrincipal.add(nuevaSubLista);
 
             JOptionPane.showMessageDialog(this, "Nueva sub-lista creada con identificador " + nuevoIdentificador);
+
+            mostrarBotonesDeSubLista(nuevoIdentificador);
         } else {
             mostrarBotonesDeSubLista(nuevoIdentificador);
         }
