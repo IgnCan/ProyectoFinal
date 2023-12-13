@@ -27,7 +27,7 @@ public class Visual extends JFrame {
     PanelRecorrido panelRecorrido =new PanelRecorrido();
     PanelHorarios panelHorarios = new PanelHorarios();
     //Variable Marcada
-    PanelReserva panelReserva =new PanelReserva(listaPrincipal,this::mostrarSubLista);
+    PanelReserva panelReserva;// =new PanelReserva(listaPrincipal,this::mostrarSubLista);
 
 
 
