@@ -122,7 +122,6 @@ public class SubListPanel extends JPanel {
     // Componentes para mostrar botones
     private JButton boton1;
     private JButton boton2;
-    private JButton regresarButton; // Nuevo botón para regresar a BotonPanel
 
     public SubListPanel(SubListCallback subListCallback, ArrayList<ArrayList<Object>> listaPrincipal) {
         this.subListCallback = subListCallback;
@@ -139,19 +138,13 @@ public class SubListPanel extends JPanel {
         agregarSubListaButton.addActionListener(e -> subListCallback.mostrarSubLista(identificadorTextField.getText()));
         add(agregarSubListaButton);
 
-        // Nuevo botón para regresar a BotonPanel
-        regresarButton = new JButton("Regresar a BotonPanel");
-        regresarButton.addActionListener(e -> subListCallback.regresarABotonPanel());
-        add(regresarButton);
-
         // Inicializar los botones (se muestran después)
         boton1 = new JButton("Botón 1");
         boton2 = new JButton("Botón 2");
     }
-    @FunctionalInterface
+
     public interface SubListCallback {
         void mostrarSubLista(String nuevoIdentificador);
-        void regresarABotonPanel(); // Nuevo método para regresar a BotonPanel
     }
 
     // Método para mostrar todos los componentes de la sublista
@@ -170,9 +163,6 @@ public class SubListPanel extends JPanel {
                 // Puedes agregar lógica para otros tipos de elementos aquí
             }
         }
-
-        // Agregar el botón para regresar a BotonPanel
-        add(regresarButton);
 
         // Volver a validar el layout
         revalidate();

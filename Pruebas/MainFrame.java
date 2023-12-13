@@ -160,7 +160,6 @@ public class MainFrame extends JFrame {
         // Crear las tarjetas
         String nuevaSubListaCard = "NuevaSubLista";
         String mostrarBotonesCard = "MostrarBotones";
-        String botonPanelCard = "BotonPanel";
 
         SubListPanel nuevaSubListaPanel = new SubListPanel(this::agregarNuevaSubLista, listaPrincipal);
         cardPanel.add(nuevaSubListaPanel, nuevaSubListaCard);
@@ -168,17 +167,11 @@ public class MainFrame extends JFrame {
         SubListPanel mostrarBotonesPanel = new SubListPanel(this::mostrarBotonesDeSubLista, listaPrincipal);
         cardPanel.add(mostrarBotonesPanel, mostrarBotonesCard);
 
-        BotonPanel botonPanel = new BotonPanel(this::enviarIdentificador);
-        cardPanel.add(botonPanel, botonPanelCard);
-
         // Configurar el CardLayout
-        cardLayout.show(cardPanel, botonPanelCard);
+        cardLayout.show(cardPanel, nuevaSubListaCard);
 
         // Agregar el panel al JFrame
         add(cardPanel);
-
-        // Enviar inmediatamente el identificador "hola"
-        enviarIdentificador("hola");
 
         // Mostrar el JFrame
         setVisible(true);
@@ -238,13 +231,7 @@ public class MainFrame extends JFrame {
         return false;
     }
 
-    private void enviarIdentificador(String identificador) {
-        cardLayout.show(cardPanel, "NuevaSubLista");
-        agregarNuevaSubLista(identificador);
-    }
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(MainFrame::new);
     }
 }
-
