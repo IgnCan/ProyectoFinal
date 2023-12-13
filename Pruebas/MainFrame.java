@@ -8,6 +8,8 @@ public class MainFrame extends JFrame {
 
     private ArrayList<ArrayList<Object>> listaPrincipal;
 
+    String nuevoIdentificador = "voilá";
+
     public MainFrame() {
         listaPrincipal = new ArrayList<>();
 
@@ -25,7 +27,7 @@ public class MainFrame extends JFrame {
         setSize(300, 200);
 
         // Crear un JPanel con el botón y agregarlo al JFrame
-        String nuevoIdentificador = "identificador1";
+
         SubListPanel subListPanel = new SubListPanel(this::agregarNuevaSubLista, listaPrincipal, nuevoIdentificador);
         add(subListPanel);
 
