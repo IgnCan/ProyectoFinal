@@ -67,20 +67,41 @@ package Pruebas;//package Pruebas;
 //        }
 //    }
 //
-//    private void agregarSubListaPredefinida(String identificador, JButton boton1, JButton boton2) {
-//        // Crear una sublista predefinida
-//        ArrayList<Object> subLista = new ArrayList<>();
-//        subLista.add(identificador);
+//private void agregarNuevaSubLista(String nuevoIdentificador) {
+//        boolean existeIdentificador = existeIdentificador(nuevoIdentificador);
 //
-//        // Agregar los botones a la sublista
-//        subLista.add(boton1);
-//        subLista.add(boton2);
+//        // Si el identificador no existe, o si existe pero ya se mostró, crear una nueva sub-lista
+//        if (!existeIdentificador || mostrarBotonesDeSubLista(nuevoIdentificador)) {
+//        // Crear una nueva sub-lista
+//        ArrayList<Object> nuevaSubLista = new ArrayList<>();
+//        nuevaSubLista.add(nuevoIdentificador);
+//
+//        int NumeroAsiento=1;
+//        for (int i=1; i<=41;i=i+1){
+//        if (i==1){
+//        nuevaSubLista.add(nuevoIdentificador);
+//        } else {
+//        nuevaSubLista.add(new Asientos("Asiento " + NumeroAsiento));
+//        NumeroAsiento = NumeroAsiento + 1;
+//        }
+//        }
 //
 //        // Puedes agregar más elementos a la sublista si es necesario
+//        listaPrincipal.add(nuevaSubLista);
 //
-//        // Agregar la sublista predefinida a la lista principal
-//        listaPrincipal.add(subLista);
-//    }
+//        JOptionPane.showMessageDialog(this, "Nueva sub-lista creada con identificador " + nuevoIdentificador);
+//
+//        // Mostrar los botones de la nueva sublista
+//        mostrarBotonesDeSubLista(nuevoIdentificador);
+//
+//        // Cambiar a la tarjeta de mostrar botones
+//        cardLayout.show(cardPanel, "MostrarBotones");
+//        } else {
+//        JOptionPane.showMessageDialog(this, "Ya existe una sub-lista con el identificador " + nuevoIdentificador);
+//        mostrarBotonesDeSubLista(nuevoIdentificador);
+//        cardLayout.show(cardPanel, "MostrarBotones");
+//        }
+//        }
 //
 //    private boolean existeIdentificador(String identificador) {
 //        for (ArrayList<Object> subLista : listaPrincipal) {
@@ -112,7 +133,6 @@ package Pruebas;//package Pruebas;
 //
 //
 
-import Botones.Asientos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -130,7 +150,7 @@ public class MainFrame extends JFrame {
         // Configurar el JFrame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Agregar Sub-Lista");
-        setSize(800, 800);
+        setSize(400, 300);
 
         // Crear el panel con CardLayout
         cardPanel = new JPanel();
@@ -140,6 +160,7 @@ public class MainFrame extends JFrame {
         // Crear las tarjetas
         String nuevaSubListaCard = "NuevaSubLista";
         String mostrarBotonesCard = "MostrarBotones";
+        String botonPanelCard = "BotonPanel";
 
         SubListPanel nuevaSubListaPanel = new SubListPanel(this::agregarNuevaSubLista, listaPrincipal);
         cardPanel.add(nuevaSubListaPanel, nuevaSubListaCard);
@@ -147,11 +168,17 @@ public class MainFrame extends JFrame {
         SubListPanel mostrarBotonesPanel = new SubListPanel(this::mostrarBotonesDeSubLista, listaPrincipal);
         cardPanel.add(mostrarBotonesPanel, mostrarBotonesCard);
 
+        BotonPanel botonPanel = new BotonPanel(this::enviarIdentificador);
+        cardPanel.add(botonPanel, botonPanelCard);
+
         // Configurar el CardLayout
-        cardLayout.show(cardPanel, nuevaSubListaCard);
+        cardLayout.show(cardPanel, botonPanelCard);
 
         // Agregar el panel al JFrame
         add(cardPanel);
+
+        // Enviar inmediatamente el identificador "hola"
+        enviarIdentificador("hola");
 
         // Mostrar el JFrame
         setVisible(true);
@@ -167,20 +194,10 @@ public class MainFrame extends JFrame {
             nuevaSubLista.add(nuevoIdentificador);
 
             // Agregar dos JButton como elementos a la sublista
-//            JButton boton1 = new JButton("Botón 1");
-//            JButton boton2 = new JButton("Botón 2");
-//            nuevaSubLista.add(boton1);
-//            nuevaSubLista.add(boton2);
-
-            int NumeroAsiento=1;
-            for (int i=1; i<=41;i=i+1){
-                if (i==1){
-                    nuevaSubLista.add(nuevoIdentificador);
-                } else {
-                    nuevaSubLista.add(new Asientos("Asiento " + NumeroAsiento));
-                    NumeroAsiento = NumeroAsiento + 1;
-                }
-            }
+            JButton boton1 = new JButton("Botón 1");
+            JButton boton2 = new JButton("Botón 2");
+            nuevaSubLista.add(boton1);
+            nuevaSubLista.add(boton2);
 
             // Puedes agregar más elementos a la sublista si es necesario
             listaPrincipal.add(nuevaSubLista);
@@ -194,8 +211,6 @@ public class MainFrame extends JFrame {
             cardLayout.show(cardPanel, "MostrarBotones");
         } else {
             JOptionPane.showMessageDialog(this, "Ya existe una sub-lista con el identificador " + nuevoIdentificador);
-            mostrarBotonesDeSubLista(nuevoIdentificador);
-            cardLayout.show(cardPanel, "MostrarBotones");
         }
     }
 
@@ -223,7 +238,13 @@ public class MainFrame extends JFrame {
         return false;
     }
 
+    private void enviarIdentificador(String identificador) {
+        cardLayout.show(cardPanel, "NuevaSubLista");
+        agregarNuevaSubLista(identificador);
+    }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(MainFrame::new);
     }
 }
+

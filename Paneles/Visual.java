@@ -6,7 +6,7 @@
 //import Enums.Recorrido;
 //import Enums.TipoAsiento;
 //import Enums.TipoBus;
-//import Pruebas.PanelReserva;
+////import Pruebas.PanelReserva;
 //
 //import javax.swing.*;
 //import java.awt.*;
@@ -26,8 +26,8 @@
 //    String nuevoIdentificador = "voilá";
 //    // Estos son los paneles
 //    CardLayout cardLayout = new CardLayout();
-//    PanelRecorrido panelRecorrido =new PanelRecorrido();
-//    PanelHorarios panelHorarios = new PanelHorarios();
+//
+//
 //    //Variable Marcada
 //    PanelReserva panelReserva;// =new PanelReserva(listaPrincipal,this::mostrarSubLista);
 //
@@ -90,96 +90,13 @@
 //        this.setVisible(true);
 //    }
 //
-//    private void agregarNuevaSubLista(String nuevoIdentificador) {
-//        if (!existeIdentificador(nuevoIdentificador)) {
-//            // Si el identificador no existe, crear una nueva sub-lista
-//            ArrayList<Object> nuevaSubLista = new ArrayList<>();
-//            //nuevaSubLista.add(nuevoIdentificador);
 //
-//            // Agregar dos JButton como elementos a la sublista
-//            System.out.println("No se encontro recorrido");
-//            int NumeroAsiento=1;
-//            for (int i=1; i<=41;i=i+1){
-//                if (i==1){
-//                    nuevaSubLista.add(nuevoIdentificador);
-//                } else {
-//                    nuevaSubLista.add(new Asientos("Asiento " + NumeroAsiento));
-//                    NumeroAsiento = NumeroAsiento + 1;
-//                }
-//            }
 //
-//            // Puedes agregar más elementos a la sublista si es necesario
-//            listaPrincipal.add(nuevaSubLista);
 //
-//            System.out.println("Nueva sub-lista creada con identificador " + nuevoIdentificador);
 //
-//            mostrarBotonesDeSubLista(nuevoIdentificador);
-//            cardLayout.show(cardPanel, "Panel3");
-//        } else {
-//            mostrarBotonesDeSubLista(nuevoIdentificador);
-//            cardLayout.show(cardPanel, "Panel3");
-//        }
-//    }
 //
-//    private void agregarSubListaPredefinida(String identificador, JButton boton1, JButton boton2) {
-//        // Crear una sublista predefinida
-//        ArrayList<Object> subLista = new ArrayList<>();
-//        subLista.add(identificador);
 //
-//        // Agregar los botones a la sublista
-//        subLista.add(boton1);
-//        subLista.add(boton2);
 //
-//        // Puedes agregar más elementos a la sublista si es necesario
-//
-//        // Agregar la sublista predefinida a la lista principal
-//        listaPrincipal.add(subLista);
-//
-//    }
-//
-//    private boolean existeIdentificador(String identificador) {
-//        for (ArrayList<Object> subLista : listaPrincipal) {
-//
-//            String subListaIdentificador = (String) subLista.get(0);// Suponiendo que el identificador está en la posición
-//            if (subListaIdentificador.equals(identificador)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-// //   private void mostrarBotonesDeSubLista(String identificador) {
-// //       for (ArrayList<Object> subLista : listaPrincipal) {
-// //           String subListaIdentificador = (String) subLista.get(0);
-// //           if (subListaIdentificador.equals(identificador)) {
-// //               // Mostrar los botones de la sublista en el JPanel
-// //               SubListPanel subListPanel = (SubListPanel) getContentPane().getComponent(0);
-// //               subListPanel.mostrarBotones(subLista);
-// //               break;
-// //           }
-// //       }
-// //   }
-//
-//    private void mostrarBotonesDeSubLista(String identificador) {
-//        for (ArrayList<Object> subLista : listaPrincipal) {
-//            String subListaIdentificador = (String) subLista.get(0);
-//            if (subListaIdentificador.equals(identificador)) {
-//                // Modificación: Verificar si el componente es un SubListPanel antes de castear
-//                Component component = getContentPane().getComponent(0);
-//
-//                if (component instanceof PanelReserva) {
-//                    PanelReserva subListPanel = (PanelReserva) component;
-//                    subListPanel.mostrarBotones(subLista);
-//                } else {
-//                    // Manejo del error: imprime un mensaje y/o lanza una excepción
-//                    System.err.println("Error: El componente en la posición 0 no es un SubListPanel");
-//                    // Puedes lanzar una excepción aquí si es necesario
-//                }
-//
-//                break;
-//            }
-//        }
-//    }
 //
 //
 //
@@ -203,7 +120,6 @@
 //    public void setBus(TipoBus bus) {
 //        this.bus = bus;
 //    }
-//
 //
 //    public class AvanzarBot extends JButton{
 //        public AvanzarBot(String text){
@@ -277,5 +193,6 @@
 //            });
 //        }
 //    }
+//
 //
 //}
