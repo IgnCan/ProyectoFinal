@@ -1,5 +1,7 @@
 package Pruebas;
 
+import Botones.Asientos;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -45,17 +47,86 @@ public class SubListPanel extends JPanel {
         removeAll(); // Limpiar el panel antes de agregar componentes
         // Obtener identificador y botones de la sublista
         String identificador = (String) subLista.get(0);
-        boton1 = (JButton) subLista.get(1);
-        boton2 = (JButton) subLista.get(2);
+//        Agregar el identificador y los botones al panel
+//        add(new JLabel("Identificador: " + identificador));
 
-        // Agregar el identificador y los botones al panel
-        add(new JLabel("Identificador: " + identificador));
-        add(boton1);
-        add(boton2);
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        int Columna=0;
+        int Fila=0;
+        int y=1;
+        int a=1;
+        for (int i = 1; i <= 50; i++) {
+            gbc.gridy = Columna;
+            gbc.gridx = Fila;
+
+            if (i%5==3){
+                JLabel relleno = new JLabel("                     ");
+                add(relleno,gbc);
+                Fila=Fila+1;
+            } else {
+                Object elemento = subLista.get(a);
+                if (elemento instanceof Asientos) {
+                    Asientos boton = (Asientos) elemento;
+                    add(boton, gbc);
+                    a=a+1;
+                }
+//                add((Component) elementoObjetivo.get(y),gbc);
+                Fila=Fila+1;
+                //NumeroAsiento=NumeroAsiento+1;
+                y=y+1;
+
+            }
+            if (i%5==0){Columna=Columna+1;Fila=0;}
+
+        }
+        a=1;
+
+//        gbc.gridy = 10;
+//        gbc.gridx = 10;
+        add(new Reservador(subLista));
 
         // Volver a validar el layout
         revalidate();
         repaint();
+    }
+
+
+    /**
+     * Este boton finaliza la reserva de los pasajes
+     */
+    public class Reservador extends JButton{
+        public Reservador(ArrayList<Object> subLista){
+            setText("Reservar");
+            addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    for (Object elemento : subLista) {
+                        if(elemento instanceof Asientos){
+                            Asientos bot = (Asientos) elemento;
+                            if (bot.getBackground() == Color.GREEN) {
+                                bot.Desactivacion();
+                                //NO BORRAR HASTA PRUEBA EN CARDLAYOUT
+                                //bot.setEnabled(false);
+                                //bot.setBackground(Color.RED);
+                                //PrecioTotal=PrecioTotal+precioPorBoleto;
+                                //System.out.println(PrecioTotal);
+                            }
+                        }else if(elemento instanceof String){
+                            System.out.println(elemento);
+                        }
+                    }
+//                    vent.recibirLista(asientos);
+//
+//                    System.out.println(listaPrincipal().get(0).get(0) + "dfhsjadgh");
+                    //System.out.println("El precio total de la compra es: " + PrecioTotal);
+                    //PrecioTotal=0;
+                }
+            });
+
+        }
     }
 }
 

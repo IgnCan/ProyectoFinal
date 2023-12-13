@@ -84,6 +84,14 @@ public class Visual extends JFrame {
         this.setVisible(true);
     }
 
+
+
+
+
+
+
+
+
     public void setRec(Recorrido rec) {
         this.rec = rec;
     }
@@ -99,29 +107,6 @@ public class Visual extends JFrame {
     public void setBus(TipoBus bus) {
         this.bus = bus;
     }
-
-    private void mostrarSubLista(String identificador) {
-        ArrayList<Object> subListaEncontrada = buscarSubListaPorIdentificador(identificador);
-
-        if (subListaEncontrada != null) {
-            // Mostrar los elementos de la sub-lista en un diálogo o de alguna otra manera
-            JOptionPane.showMessageDialog(this, "Sub-Lista para " + identificador + ": " + subListaEncontrada);
-        } else {
-            JOptionPane.showMessageDialog(this, "No se encontró ninguna sub-lista para " + identificador);
-        }
-    }
-
-    private ArrayList<Object> buscarSubListaPorIdentificador(String identificadorBuscado) {
-        for (ArrayList<Object> subLista : listaPrincipal) {
-            String identificador = (String) subLista.get(0);
-            if (identificador.equals(identificadorBuscado)) {
-                return subLista;
-            }
-        }
-        return null;
-    }
-
-
 
 
     public class AvanzarBot extends JButton{

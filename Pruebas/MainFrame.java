@@ -1,5 +1,7 @@
 package Pruebas;
 
+import Botones.Asientos;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ public class MainFrame extends JFrame {
         // Configurar el JFrame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Agregar Sub-Lista");
-        setSize(300, 200);
+        setSize(1000, 800);
 
         // Crear un JPanel con el botón y agregarlo al JFrame
 
@@ -39,13 +41,19 @@ public class MainFrame extends JFrame {
         if (!existeIdentificador(nuevoIdentificador)) {
             // Si el identificador no existe, crear una nueva sub-lista
             ArrayList<Object> nuevaSubLista = new ArrayList<>();
-            nuevaSubLista.add(nuevoIdentificador);
+            //nuevaSubLista.add(nuevoIdentificador);
 
             // Agregar dos JButton como elementos a la sublista
-            JButton boton1 = new JButton("Botón 1");
-            JButton boton2 = new JButton("Botón 2");
-            nuevaSubLista.add(boton1);
-            nuevaSubLista.add(boton2);
+            System.out.println("No se encontro recorrido");
+            int NumeroAsiento=1;
+            for (int i=1; i<=41;i=i+1){
+                if (i==1){
+                    nuevaSubLista.add(nuevoIdentificador);
+                } else {
+                    nuevaSubLista.add(new Asientos("Asiento " + NumeroAsiento));
+                    NumeroAsiento = NumeroAsiento + 1;
+                }
+            }
 
             // Puedes agregar más elementos a la sublista si es necesario
             listaPrincipal.add(nuevaSubLista);

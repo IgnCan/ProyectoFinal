@@ -109,8 +109,7 @@ public class PanelReserva extends JPanel {
             System.out.println("El precio por ticket es: " + precioPorBoleto);
             System.out.println("El recorrido y horario es: " + rec.getRecorrido()+" "+ hor.getHora());
 
-            setLayout(new GridBagLayout());
-            GridBagConstraints gbc = new GridBagConstraints();
+
             //this.asientos= new BuscarRecorrido(vent.listaPrincipal,IdViajeCompleto);
 
             ArrayList<Object> elementoObjetivo = BuscarRecorrido(listaPrincipal, IdViajeCompleto);
@@ -129,6 +128,9 @@ public class PanelReserva extends JPanel {
 //        }
 
             //Todo esto crea el panel de botones con una bonita matriz
+
+            setLayout(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
 
             int Columna=0;
             int Fila=0;
@@ -204,7 +206,7 @@ public class PanelReserva extends JPanel {
                                 //NO BORRAR HASTA PRUEBA EN CARDLAYOUT
                                 //bot.setEnabled(false);
                                 //bot.setBackground(Color.RED);
-                                PrecioTotal=PrecioTotal+precioPorBoleto;
+                                //PrecioTotal=PrecioTotal+precioPorBoleto;
                                 //System.out.println(PrecioTotal);
                             }
                         }else if(elemento instanceof String){
@@ -214,8 +216,8 @@ public class PanelReserva extends JPanel {
 //                    vent.recibirLista(asientos);
 //
 //                    System.out.println(listaPrincipal().get(0).get(0) + "dfhsjadgh");
-                    System.out.println("El precio total de la compra es: " + PrecioTotal);
-                    PrecioTotal=0;
+                    //System.out.println("El precio total de la compra es: " + PrecioTotal);
+                    //PrecioTotal=0;
                 }
             });
 
