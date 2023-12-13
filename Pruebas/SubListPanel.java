@@ -1,6 +1,11 @@
 package Pruebas;
 
+import AsignacionDeHorarios.AsignacionFinal;
 import Botones.Asientos;
+import Enums.Horario;
+import Enums.Recorrido;
+import Enums.TipoAsiento;
+import Enums.TipoBus;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +17,8 @@ public class SubListPanel extends JPanel {
     private SubListCallback subListCallback;
     private ArrayList<ArrayList<Object>> listaPrincipal;
     private String nuevoIdentificador;
+
+
 
     // Componentes para mostrar botones
     private JButton boton1;
@@ -25,17 +32,21 @@ public class SubListPanel extends JPanel {
         setLayout(new FlowLayout());
 
         // Crear campo de texto para el identificador
-        //JTextField identificadorTextField = new JTextField(10);
-        //add(identificadorTextField);
+        JTextField identificadorTextField = new JTextField(10);
+        add(identificadorTextField);
 
         // Crear botón para agregar nueva sub-lista
         JButton agregarSubListaButton = new JButton("Agregar Sub-Lista");
         agregarSubListaButton.addActionListener(e -> subListCallback.mostrarSubLista(nuevoIdentificador));
+
+        subListCallback.mostrarSubLista(nuevoIdentificador);
         add(agregarSubListaButton);
 
         // Inicializar los botones (se muestran después)
-        boton1 = new JButton("Botón 1");
-        boton2 = new JButton("Botón 2");
+//        boton1 = new JButton("Botón 1");
+//        boton2 = new JButton("Botón 2");
+
+
     }
 
     public interface SubListCallback {
@@ -53,35 +64,38 @@ public class SubListPanel extends JPanel {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        int Columna=0;
-        int Fila=0;
-        int y=1;
-        int a=1;
+        int Columna = 0;
+        int Fila = 0;
+        int y = 1;
+        int a = 1;
         for (int i = 1; i <= 50; i++) {
             gbc.gridy = Columna;
             gbc.gridx = Fila;
 
-            if (i%5==3){
+            if (i % 5 == 3) {
                 JLabel relleno = new JLabel("                     ");
-                add(relleno,gbc);
-                Fila=Fila+1;
+                add(relleno, gbc);
+                Fila = Fila + 1;
             } else {
                 Object elemento = subLista.get(a);
                 if (elemento instanceof Asientos) {
                     Asientos boton = (Asientos) elemento;
                     add(boton, gbc);
-                    a=a+1;
+                    a = a + 1;
                 }
 //                add((Component) elementoObjetivo.get(y),gbc);
-                Fila=Fila+1;
+                Fila = Fila + 1;
                 //NumeroAsiento=NumeroAsiento+1;
-                y=y+1;
+                y = y + 1;
 
             }
-            if (i%5==0){Columna=Columna+1;Fila=0;}
+            if (i % 5 == 0) {
+                Columna = Columna + 1;
+                Fila = 0;
+            }
 
         }
-        a=1;
+        a = 1;
 
 //        gbc.gridy = 10;
 //        gbc.gridx = 10;
@@ -96,15 +110,15 @@ public class SubListPanel extends JPanel {
     /**
      * Este boton finaliza la reserva de los pasajes
      */
-    public class Reservador extends JButton{
-        public Reservador(ArrayList<Object> subLista){
+    public class Reservador extends JButton {
+        public Reservador(ArrayList<Object> subLista) {
             setText("Reservar");
             addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
                     for (Object elemento : subLista) {
-                        if(elemento instanceof Asientos){
+                        if (elemento instanceof Asientos) {
                             Asientos bot = (Asientos) elemento;
                             if (bot.getBackground() == Color.GREEN) {
                                 bot.Desactivacion();
@@ -114,7 +128,7 @@ public class SubListPanel extends JPanel {
                                 //PrecioTotal=PrecioTotal+precioPorBoleto;
                                 //System.out.println(PrecioTotal);
                             }
-                        }else if(elemento instanceof String){
+                        } else if (elemento instanceof String) {
                             System.out.println(elemento);
                         }
                     }
@@ -128,7 +142,9 @@ public class SubListPanel extends JPanel {
 
         }
     }
+
 }
+
 
 
 

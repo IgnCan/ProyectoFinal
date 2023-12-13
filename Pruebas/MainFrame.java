@@ -3,7 +3,6 @@ package Pruebas;
 import Botones.Asientos;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 public class MainFrame extends JFrame {
