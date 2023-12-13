@@ -16,7 +16,6 @@ Ignacio Candia
 - el uso de sublistas para almacenar los cambios en los botones al reservar un pasaje y asi acceder a ellos cuando se quiera comprar un pasaje en el mismo recorrido  
 
 #Problemas encontrados:
-
 -Dificultades en encontrar los patrones de diseño que se acomodara a nuestras necesidades.\
 -El desarroo de el sistema de compra, ya que la implementascion de sublistas con distintos tipos de objetos que almacenara los pasajes y sus respectivos datos fue muy confuso.\
 - Distribucion del tiempo, por la carga academica al final de semestre en ramos demandantes de nuestra malla curricular no pudimos dedicar el tiemppo deseado y requerido para terminar satisfactoriamente el proyecto.\
